@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import YAML from 'yaml';
+
 const s=JSON.parse(fs.readFileSync('site.settings.json','utf8'));
 const repository=process.env.GITHUB_REPOSITORY||s.repository;
 if(!/^[\w.-]+\/[\w.-]+$/.test(repository))throw Error('repository inválido');
 const [owner,name]=repository.split('/');
 const baseUrl=process.env.PAGES_BASE_URL?.replace(/^https?:\/\//,'').replace(/\/$/,'') || (process.env.GITHUB_REPOSITORY?`${owner}.github.io${name.toLowerCase()===`${owner.toLowerCase()}.github.io`?'':'/'+name}`:s.baseUrl);
-if(!/^[a-z0-9.-]+(?:\/[a-zA-Z0-9._/-]+)?$/.test(baseUrl))throw Error('baseUrl inválida');
+if(!/^[a-z0-9.-]+(?:\/[a-zA-Z0-9._/-]+)?$/i.test(baseUrl))throw Error('baseUrl inválida');
 if(!/^[\w./-]+$/.test(s.branch))throw Error('branch inválida');
 const c=YAML.parse(fs.readFileSync('quartz.config.yaml','utf8'));
 c.configuration.pageTitle=s.title;c.configuration.baseUrl=baseUrl;
