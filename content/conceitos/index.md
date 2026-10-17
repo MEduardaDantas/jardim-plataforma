@@ -23,6 +23,10 @@ relations:
 
 Entender cada peça do fluxo com calma. Cada nota explica o problema que resolve, como funciona e como se conecta às outras. Você pode acrescentar imagens e diagramas em qualquer seção pelo Studio ou pela edição no GitHub.
 
+## Passo a passo
+
+Escolha um conceito no explorador ou no [[mapa]]. Leia sua explicação, observe as conexões e registre suas dúvidas. Você pode estudar os assuntos na ordem que fizer sentido para você.
+
 ## Como verificar
 
 Depois da leitura, tente explicar a ferramenta sem usar apenas seu nome. O que ela recebe? O que entrega? O que ela não faz sozinha? Volte ao mapa para conferir a ligação.
