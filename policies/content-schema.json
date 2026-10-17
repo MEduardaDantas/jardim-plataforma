@@ -1,0 +1,84 @@
+{
+  "types": {
+    "conceito": [
+      "O problema que resolve",
+      "Como funciona",
+      "No fluxo de entrega",
+      "Exemplo",
+      "Como verificar",
+      "Conexões",
+      "Referências"
+    ],
+    "demanda": [
+      "Contexto",
+      "Objetivo",
+      "Critérios de aceite",
+      "Plano",
+      "Evidências",
+      "Aprendizados",
+      "Conexões",
+      "Referências"
+    ],
+    "laboratorio": [
+      "Cenário",
+      "Pré-requisitos",
+      "Passo a passo",
+      "Resultado esperado",
+      "Diagnóstico",
+      "Limpeza",
+      "Conexões",
+      "Referências"
+    ],
+    "decisao": [
+      "Contexto",
+      "Alternativas",
+      "Decisão",
+      "Consequências",
+      "Como revisar",
+      "Conexões",
+      "Referências"
+    ],
+    "guia": [
+      "Objetivo",
+      "Passo a passo",
+      "Como verificar",
+      "Conexões",
+      "Referências"
+    ]
+  },
+  "stages": [
+    "planejar",
+    "construir",
+    "verificar",
+    "publicar",
+    "implantar",
+    "operar",
+    "aprender"
+  ],
+  "statuses": [
+    "rascunho",
+    "em-estudo",
+    "validado"
+  ],
+  "relationTypes": [
+    "produz",
+    "armazena",
+    "configura",
+    "executa",
+    "observa",
+    "depende-de",
+    "valida",
+    "documenta"
+  ],
+  "required": [
+    "title",
+    "description",
+    "type",
+    "stage",
+    "status",
+    "created",
+    "updated",
+    "tags",
+    "relations"
+  ]
+}

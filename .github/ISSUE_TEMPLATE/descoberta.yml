@@ -1,0 +1,29 @@
+name: Registrar uma descoberta
+description: Propor um conceito, prática ou conexão para estudar.
+title: '[estudo] '
+body:
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo
+      options: [Conceito, Demanda, Laboratório, Decisão, Guia]
+    validations:
+      required: true
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qual problema motivou o estudo?
+    validations:
+      required: true
+  - type: textarea
+    id: conexoes
+    attributes:
+      label: Quais notas ou ferramentas se conectam?
+    validations:
+      required: true
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: O que foi observado e como verificar?
+    validations:
+      required: true
