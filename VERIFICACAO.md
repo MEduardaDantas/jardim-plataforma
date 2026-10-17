@@ -1,9 +1,14 @@
-# Verificação da entrega
+# Verificação da revisão — 17/10/2026
 
-- Build do Quartz 5: aprovado, 26 notas processadas.
-- Políticas: 10 testes aprovados, incluindo rejeição de metadados inválidos, datas impossíveis, relações quebradas e conteúdo ativo.
-- Interface: 2 testes DOM aprovados. Um gera os cinco modelos e submete seus arquivos ao validador; o outro percorre o simulador e suas falhas.
-- Laboratório: 3 testes HTTP aprovados (página, saúde, rota inexistente).
-- Saída: navegação de edição, canonical, dados estruturados, catálogo do editor, robots e sitemap verificados.
+- Quartz processou 25 notas, incluindo 18 conceitos e as novas páginas de entrada.
+- 10 testes de políticas aprovados.
+- 5 testes de interface/modelo aprovados: geração dos três modelos, inserção de mídia, mapa com filtro/seleção, fluxo livre, falhas e rollback.
+- 3 testes HTTP do laboratório aprovados.
+- Títulos da aba e do artigo comparados com os metadados de todas as notas.
+- Ausência de JSON de metadados no conteúdo verificada.
+- Mapa amplo, imagens, links locais, recursos, editor e SEO verificados na saída.
+- Seções de decisões e demandas removidas; URLs antigas redirecionadas.
 
-Limites: não houve inspeção visual em navegador nem publicação em uma conta GitHub nesta execução. Os testes DOM não verificam layout. Dockerfile foi preparado, mas o container não foi construído neste ambiente. A ativação de Pages e a regra de branch exigem configuração no repositório de destino.
+A primeira entrega validava o build sem conferir o título efetivamente renderizado. Isso deixou passar o defeito do parser de metadados. Esta revisão adiciona essa verificação ao job de qualidade.
+
+Limites: testes DOM e HTML não substituem inspeção visual em navegador. Não houve publicação remota nesta revisão; a conexão atual tem apenas leitura. O Dockerfile não foi executado nesta revisão. O simulador executa um modelo didático no navegador, não infraestrutura real.

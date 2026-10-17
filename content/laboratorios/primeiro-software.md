@@ -1,96 +1,87 @@
 ---
-{
-  "title": "Laboratório 01 — código, processo e porta",
-  "description": "Execute uma aplicação Python, investigue portas e valide respostas HTTP com testes reais.",
-  "type": "laboratorio",
-  "stage": "construir",
-  "status": "em-estudo",
-  "created": "2026-10-16",
-  "updated": "2026-10-16",
-  "tags": [
-    "construir",
-    "laboratorio"
-  ],
-  "relations": [
-    {
-      "target": "demandas/primeira-entrega",
-      "kind": "valida"
-    },
-    {
-      "target": "conceitos/imagens",
-      "kind": "depende-de"
-    },
-    {
-      "target": "conceitos/pipeline",
-      "kind": "depende-de"
-    }
-  ]
-}
+title: O código está aqui. Por que o site não responde?
+description: Uma investigação opcional sobre código, processo, porta e respostas
+  HTTP, com passos pequenos e reversíveis.
+type: laboratorio
+stage: aprender
+status: em-estudo
+created: 2026-10-16
+updated: 2026-10-17
+tags:
+  - estudo
+  - laboratorio
+relations:
+  - target: conceitos/imagens
+    kind: depende-de
+  - target: conceitos/pipeline
+    kind: depende-de
+  - target: conceitos/kubernetes
+    kind: depende-de
 ---
 
-## Cenário
+## O desafio
 
-O portal da Aurora tem uma página e um endpoint de saúde. Aqui você executa um processo real, separado do simulador visual.
+Um arquivo de aplicação está salvo no computador, mas o navegador não consegue acessá-lo. O que precisa acontecer entre ter o código e receber uma resposta? Vamos investigar isso em um serviço local mínimo.
 
-## Pré-requisitos
+Este é um laboratório opcional. Se sua dúvida atual for o fluxo de implantação, você pode começar pelo [simulador](../ciclo.html) e voltar aqui depois.
 
-Python 3.11 ou superior e uma cópia deste repositório. Sem bibliotecas externas. Execute os comandos a partir da raiz do projeto.
+## O que vamos aprender
 
-## Passo a passo
+Distinguir arquivo e processo, identificar a porta de escuta e diferenciar conexão recusada de uma resposta HTTP 404.
 
-1. Execute os testes:
+## Antes de começar
 
-```sh
-python -m unittest discover -s labs/primeiro-software -p 'test_*.py' -v
-```
+Você precisa de Python 3.11+ e de uma cópia deste repositório. Os arquivos estão em `labs/primeiro-software`. Não é necessário ter conta cloud ou Kubernetes. Abra o terminal na raiz do repositório. O servidor é apenas didático, para execução local.
 
-2. Inicie a aplicação:
+## Experimente
+
+1. Antes de iniciar, tente abrir `http://localhost:8000`. Se algo responder, já existe outro serviço nessa porta: use 8001 nos comandos e no navegador.
+2. Inicie o processo:
 
 ```sh
 python labs/primeiro-software/app.py
 ```
 
-3. Abra `http://localhost:8000` e `/health`.
-4. Acesse `/nao-existe` e observe o 404.
-5. Pare com Ctrl+C e tente acessar de novo.
-6. Reinicie em outra porta:
+3. Abra `http://localhost:8000` e `http://localhost:8000/health`.
+4. Acesse `http://localhost:8000/nao-existe`.
+5. Pare com Ctrl+C e tente novamente.
+6. Reinicie com outra porta:
 
 ```sh
 python labs/primeiro-software/app.py --port 8001
 ```
 
-7. Opcional, com Docker instalado:
+7. Execute os testes em outro terminal:
 
 ```sh
-docker build -t aurora:lab01 labs/primeiro-software
-docker run --rm -p 127.0.0.1:8080:8000 aurora:lab01
+python -m unittest discover -s labs/primeiro-software -p 'test_*.py' -v
 ```
 
-Abra `http://localhost:8080`: 8080 é a porta do host e 8000 a interna.
+## O que observar
 
-## Resultado esperado
+O arquivo continua no disco depois que você para o processo, mas as respostas param. Uma porta diferente exige outro endereço. Um 404 é uma resposta do servidor; conexão recusada ocorre antes de receber uma resposta HTTP. O endpoint de saúde informa a versão v1.
 
-Três testes passam. `/health` retorna status ok e versão v1. Parar o processo interrompe respostas. Alterar a porta muda o endereço. Por padrão, o servidor usa a interface local: ele não publica sozinho na internet.
+## Se algo der errado
 
-## Diagnóstico
-
-| Sintoma | Investigue |
+| Sintoma | Próxima pergunta |
 |---|---|
-| Porta ocupada | Outro processo usa 8000? Tente 8001. |
-| Conexão recusada | Processo ativo? Porta correta? |
-| 404 | Servidor respondeu, mas a rota não existe. |
-| Container inacessível | Mapeamento de portas e interface de escuta. |
+| Python não encontrado | O Python está instalado e disponível no terminal? |
+| Porta ocupada | Outro processo está usando a porta? Tente 8001. |
+| Conexão recusada | O processo está ativo? Endereço e porta estão corretos? |
+| 404 | A rota digitada existe no código? |
 
-Desafio: altere a versão para v2 e ajuste a expectativa do teste. Explique a diferença entre modificar um arquivo e reiniciar o processo.
+## Meu registro
+
+Ainda não realizado por mim. Depois da tentativa, substitua este texto por: o que eu esperava; o que aconteceu; o que agora entendo; o que ainda quero perguntar. Não é necessário acertar tudo na primeira vez.
 
 ## Limpeza
 
-Ctrl+C encerra o servidor. O container usa `--rm` e é removido ao terminar. Opcional: `docker image rm aurora:lab01`.
+Encerre o servidor com Ctrl+C. Não há recursos cloud nem banco para remover. O serviço escuta apenas em localhost por padrão.
 
 ## Conexões
 
-[[demandas/primeira-entrega]] define o aceite. [[conceitos/imagens]] explica o empacotamento. [[conceitos/pipeline]] automatiza testes.
+[[conceitos/imagens]] ajuda a empacotar essa execução. [[conceitos/pipeline]] pode automatizar os testes. [[conceitos/kubernetes]] amplia a discussão sobre manter processos executando.
 
 ## Referências
 
-- [Python HTTP server](https://docs.python.org/3/library/http.server.html)
+- [HTTP server do Python](https://docs.python.org/3/library/http.server.html)

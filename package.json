@@ -26,7 +26,7 @@
     "prepare:site": "node scripts/prepare.mjs",
     "build:site": "npm run validate:content && npm run prepare:site && npx quartz build && node scripts/postbuild.mjs",
     "preview": "npx quartz build --serve",
-    "test:web": "node --test tests/web.test.mjs"
+    "test:web": "node --test tests/web.test.mjs tests/flow.test.mjs tests/map.test.mjs"
   },
   "engines": {
     "npm": ">=10.9.2",

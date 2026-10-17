@@ -34,7 +34,7 @@ Adicionar conhecimento com consistência. O GitHub controla quem grava; o site p
 
 ## Passo a passo
 
-1. Abra **Nova nota**. Escolha conceito, demanda, laboratório, decisão ou guia.
+1. Abra **Nova nota**. Escolha conceito, laboratório ou guia.
 2. Preencha título, descrição e seções do modelo.
 3. Escolha as notas relacionadas e o significado das relações.
 4. Gere o Markdown e revise. **Criar no GitHub** abre o editor autenticado; conclua o commit ou PR lá. Para textos longos, baixe o Markdown e use Upload files.
@@ -45,6 +45,12 @@ Adicionar conhecimento com consistência. O GitHub controla quem grava; o site p
 O rascunho do formulário fica neste navegador. Só fica disponível entre máquinas depois de salvar no GitHub. Não há salvamento silencioso no servidor.
 
 Use caminhos completos, como `[[conceitos/ecr|ECR]]`. Registre target e kind nas relações do frontmatter. O grafo representa links; o tipo da relação explica o significado no texto.
+
+### Imagens e diagramas nas notas
+
+No Studio, a área **Adicionar imagem ou diagrama** insere o trecho na seção escolhida. Para uma imagem, forneça uma URL HTTPS e um texto alternativo. Para arquivos próprios, envie a imagem para `content/assets` no GitHub e use o caminho absoluto do site. O upload da imagem continua sendo concluído no GitHub; o formulário não envia arquivos sozinho.
+
+Diagramas usam Mermaid. Escolha **Diagrama**, edite o exemplo e insira o bloco na seção. A publicação transforma o código em um diagrama visual. Para editar uma nota existente, o mesmo Markdown pode ser colado no arquivo aberto por **Editar esta página**.
 
 ## Como verificar
 

@@ -1,33 +1,34 @@
 ---
-title: "Título descritivo"
-description: "Descreva o problema e o aprendizado desta página."
+title: Uma descoberta para registrar
+description: Explique o problema e o aprendizado desta nota em suas palavras.
 type: guia
 stage: aprender
 status: rascunho
-created: 2026-10-16
-updated: 2026-10-16
-tags: [estudo]
+created: 2026-10-17
+updated: 2026-10-17
+tags:
+  - estudo
 relations:
-  - target: conceitos/git
+  - target: mapa
     kind: depende-de
 ---
 
 ## Objetivo
 
-Preencha com sua explicação e evidência.
+Registre sua explicação, dúvida ou evidência.
 
 ## Passo a passo
 
-Preencha com sua explicação e evidência.
+Registre sua explicação, dúvida ou evidência.
 
 ## Como verificar
 
-Preencha com sua explicação e evidência.
+Registre sua explicação, dúvida ou evidência.
 
 ## Conexões
 
-[[conceitos/git|Git]] — explique a relação.
+[[mapa]] — explique a relação.
 
 ## Referências
 
-https://git-scm.com/doc
+https://quartz.jzhao.xyz/

@@ -9,32 +9,15 @@
       "Conexões",
       "Referências"
     ],
-    "demanda": [
-      "Contexto",
-      "Objetivo",
-      "Critérios de aceite",
-      "Plano",
-      "Evidências",
-      "Aprendizados",
-      "Conexões",
-      "Referências"
-    ],
     "laboratorio": [
-      "Cenário",
-      "Pré-requisitos",
-      "Passo a passo",
-      "Resultado esperado",
-      "Diagnóstico",
+      "O desafio",
+      "O que vamos aprender",
+      "Antes de começar",
+      "Experimente",
+      "O que observar",
+      "Se algo der errado",
+      "Meu registro",
       "Limpeza",
-      "Conexões",
-      "Referências"
-    ],
-    "decisao": [
-      "Contexto",
-      "Alternativas",
-      "Decisão",
-      "Consequências",
-      "Como revisar",
       "Conexões",
       "Referências"
     ],

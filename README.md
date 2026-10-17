@@ -11,7 +11,7 @@ Meu espaço pessoal para aprender **DevOps e engenharia de plataforma**. O conte
 - **Textos longos**: o editor oferece download do `.md`; envie-o para a pasta indicada.
 - **Aparência**: `quartz.config.yaml` e `quartz/styles/custom.scss`.
 - **Novos modelos**: `policies/content-schema.json` e `templates/`. O formulário lê o schema publicado, então novos campos de seção aparecem após o build.
-- **Conexões**: `relations` registra `target` e `kind`; o texto deve conter o wikilink do mesmo destino. O grafo padrão representa os links, não rotula cada aresta com kind. O simulador explica responsabilidades.
+- **Conexões**: `relations` registra `target` e `kind`; o texto deve conter o wikilink do mesmo destino. O mapa amplo destaca o significado das relações ao selecionar um conceito. O grafo lateral do Quartz continua disponível nas notas.
 
 Uma Issue usa um formulário de proposta. Ela não publica uma nota automaticamente.
 
@@ -45,4 +45,27 @@ Com essa regra, edite em uma branch e integre pelo PR. O validador confere forma
 
 ## Licença
 
-O Quartz mantém sua licença MIT em `LICENSE.txt`. As adições deste projeto também são disponibilizadas sob MIT. Ícones do simulador são desenhos vetoriais próprios de funções, não logotipos oficiais. Referências técnicas estão nas notas.
+O Quartz mantém sua licença MIT em `LICENSE.txt`. As adições deste projeto também são disponibilizadas sob MIT. Ícones de ferramentas vêm do projeto Devicon; créditos em `web/icons/ATTRIBUTION.txt`. Marcas pertencem a seus respectivos titulares. Referências técnicas estão nas notas.
+
+## Organização do estudo
+
+- **Conceitos**: explicações com exemplos, imagens e diagramas.
+- **Mapa**: rede ampla com ícones, busca, filtros, seleção, zoom e cartões arrastáveis.
+- **Laboratórios**: as demandas de prática, com desafio, observações e registro pessoal.
+- **Studio**: três modelos (conceito, laboratório, guia) e inserção de imagens/diagramas.
+
+Não há seção separada de decisões ou demandas. URLs antigas são redirecionadas para preservar favoritos. O simulador aceita ações em qualquer ordem, mostra erros e permite recuperação e rollback. Ele não executa infraestrutura real.
+
+## Verificar localmente
+
+```sh
+npm ci
+npm run install-plugins
+npm run test:policies
+npm run test:web
+npm run test:lab
+npm run build:site
+node scripts/check-output.mjs
+```
+
+O check de saída verifica títulos reais no HTML, ausência de metadados no texto, navegação, mapa e catálogo publicado. O parser `note-properties` precisa permanecer ativo; `hidePropertiesView: true` oculta a exibição dos campos sem desativar sua leitura.

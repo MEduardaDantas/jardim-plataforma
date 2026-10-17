@@ -6,7 +6,7 @@ body:
     id: tipo
     attributes:
       label: Tipo
-      options: [Conceito, Demanda, Laboratório, Decisão, Guia]
+      options: [Conceito, Laboratório, Guia]
     validations:
       required: true
   - type: textarea

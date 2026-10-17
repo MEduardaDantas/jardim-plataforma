@@ -1,71 +1,48 @@
 ---
-{
-  "title": "O ciclo de entrega",
-  "description": "Mapa de responsabilidades entre Git, CI, registry, Argo CD e Kubernetes, com retorno da observabilidade.",
-  "type": "guia",
-  "stage": "aprender",
-  "status": "em-estudo",
-  "created": "2026-10-16",
-  "updated": "2026-10-16",
-  "tags": [
-    "aprender",
-    "guia"
-  ],
-  "relations": [
-    {
-      "target": "conceitos/gitops",
-      "kind": "documenta"
-    },
-    {
-      "target": "conceitos/application",
-      "kind": "depende-de"
-    },
-    {
-      "target": "conceitos/iac",
-      "kind": "depende-de"
-    }
-  ]
-}
+title: Mapa de conhecimentos
+description: "Explore uma rede ampla de conceitos de DevOps e plataforma:
+  selecione ferramentas, veja relações e abra suas notas."
+type: guia
+stage: aprender
+status: em-estudo
+created: 2026-10-16
+updated: 2026-10-17
+tags:
+  - estudo
+  - guia
+relations:
+  - target: conceitos/index
+    kind: depende-de
+  - target: laboratorios/index
+    kind: depende-de
+  - target: guias/como-contribuir
+    kind: depende-de
 ---
 
 ## Objetivo
 
-Enxergar **dois caminhos que se encontram**: o da imagem e o da configuração. O registry não escolhe o que entra em execução.
-
-[Abrir o simulador visual →](ciclo.html)
+Enxergar como os assuntos que estudo se relacionam. O mapa abaixo mostra os conceitos já registrados e as ligações descritas nas notas. Não é uma trilha obrigatória nem uma escala de dificuldade.
 
 ## Passo a passo
 
-```mermaid
-flowchart TD
-  G["Git · código"] -->|aciona| CI["CI · testa e constrói"]
-  CI -->|publica imagem| R["Registry · ECR"]
-  CI -->|automação explícita atualiza| D["Git · configuração"]
-  H["Helm ou Kustomize"] -->|renderizam manifestos| A["Argo CD"]
-  D -->|origem acompanhada| A
-  A -->|aplica recursos| K["Kubernetes"]
-  R -->|runtime no nó baixa| K
-  K -->|emite sinais| O["Observabilidade"]
-  O -->|orienta a próxima mudança| G
-```
+- **Selecione uma ferramenta** para ler suas relações e abrir a nota.
+- **Arraste os cartões** para reorganizar sua visão. Arraste o fundo para mover o mapa.
+- Use **+ / −**, **Centralizar** e **Tela cheia** para navegar.
+- Pesquise um nome ou filtre uma etapa do ciclo para localizar assuntos.
+- Ao criar uma nota no Studio, selecione suas relações. Depois da publicação, ela aparece aqui.
 
-| Peça | Recebe | Entrega |
-|---|---|---|
-| [[conceitos/pipeline|CI]] | Código e regras | Evidências e artefatos |
-| [[conceitos/ecr|ECR]] | Imagem publicada | Imagem para pull |
-| [[conceitos/helm|Helm]] / [[conceitos/kustomize|Kustomize]] | Modelos ou bases e ajustes | Manifestos |
-| [[conceitos/argo-cd|Argo CD]] | Desejado e real | Comparação e sincronização |
-| [[conceitos/kubernetes|Kubernetes]] | Recursos declarados | Reconciliação da execução |
-| [[conceitos/observabilidade|Observabilidade]] | Sinais | Evidências para investigar |
+As setas têm direção: “CI produz imagem” não significa “imagem produz CI”. Os rótulos aparecem quando você seleciona um conceito. Ícones ajudam a reconhecer ferramentas; conceitos gerais usam símbolos.
 
 ## Como verificar
 
-Se v2 foi publicada e a configuração pede v1, a intenção continua v1. Se a configuração pede v2 e falta permissão de pull, a intenção mudou e a execução pode falhar. Intenção e realidade são diferentes.
+Selecione ECR: ele armazena imagens. Selecione Kubernetes: ele organiza a execução. Para experimentar uma entrega, abra o [simulador](ciclo.html). Para registrar outra relação, use o [Studio](studio.html).
+
+O mapa é calculado a partir das notas. Arrastar cartões muda sua organização visual nesta visita, sem alterar os vínculos publicados.
 
 ## Conexões
 
-[[conceitos/gitops]] explica a abordagem. [[conceitos/application]] define origem e destino. [[conceitos/iac]] trata da infraestrutura.
+[[conceitos/index|Todos os conceitos]] oferece uma lista acessível. [[laboratorios/index|Laboratórios]] leva as relações para a prática. [[guias/como-contribuir|Como contribuir]] explica imagens e diagramas.
 
 ## Referências
 
-- [Conceitos do Argo CD](https://argo-cd.readthedocs.io/en/stable/core_concepts/)
+- [Quartz: notas conectadas](https://quartz.jzhao.xyz/)

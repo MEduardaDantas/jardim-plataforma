@@ -45,6 +45,16 @@ replicas: {{ .Values.replicaCount }}
 # Com replicaCount: 3, produz replicas: 3.
 ```
 
+### Veja a relação
+
+```mermaid
+flowchart TD
+ T["Templates do chart"] --> H["Helm: renderização"]
+ V["Valores do ambiente"] --> H
+ H --> M["Manifestos Kubernetes"]
+ M --> A["Argo CD: compara e aplica"]
+```
+
 ## Como verificar
 
 Execute helm template e inspecione o manifesto final.

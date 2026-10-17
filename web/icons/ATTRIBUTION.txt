@@ -1,0 +1,1 @@
+Ícones de ferramentas: Devicon, https://github.com/devicons/devicon (licença do projeto: https://github.com/devicons/devicon/blob/master/LICENSE). Nomes e marcas pertencem a seus respectivos titulares. O símbolo AWS representa o fornecedor de S3 e ECR, não ícones específicos desses serviços. Os demais conceitos usam símbolos desenhados neste projeto.
