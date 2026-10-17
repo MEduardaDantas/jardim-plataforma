@@ -1,54 +1,48 @@
 ---
-{
-  "title": "Aprender pelas conexões",
-  "description": "Aprender DevOps conectando problemas, tecnologias e prática. Um jardim de conhecimento em português, por Maria Eduarda.",
-  "type": "guia",
-  "stage": "aprender",
-  "status": "em-estudo",
-  "created": "2026-10-16",
-  "updated": "2026-10-16",
-  "tags": [
-    "aprender",
-    "guia"
-  ],
-  "relations": [
-    {
-      "target": "mapa",
-      "kind": "documenta"
-    },
-    {
-      "target": "trilha",
-      "kind": "documenta"
-    }
-  ]
-}
+title: Meu espaço de aprendizado
+description: Um espaço acolhedor para estudar DevOps e engenharia de plataforma,
+  registrar dúvidas, conectar conceitos e aprender com a prática.
+type: guia
+stage: aprender
+status: em-estudo
+created: 2026-10-16
+updated: 2026-10-17
+tags:
+  - estudo
+  - guia
+relations:
+  - target: conceitos/index
+    kind: depende-de
+  - target: mapa
+    kind: depende-de
+  - target: laboratorios/index
+    kind: depende-de
 ---
 
-<div class="garden-hero"><span class="eyebrow">JARDIM DE PLATAFORMA · MARIA EDUARDA</span><p class="hero-line">Uma demanda.<br>Novas conexões.<br>Conhecimento que cresce.</p><p>Da primeira aplicação ao ciclo de entrega: entenda por que cada peça existe, experimente e registre o que mudou no seu raciocínio.</p></div>
+<div class="garden-hero"><span class="eyebrow">JARDIM DE PLATAFORMA · UM ESPAÇO PARA APRENDER</span><p class="hero-line">Entender uma coisa.<br>Conectar com outra.<br>Aprender no seu ritmo.</p><p>Você pode chegar com uma dúvida, uma descoberta ou algo que ainda não fez sentido. Aqui, cada estudo encontra um lugar — e uma conexão com o que veio antes.</p></div>
 
 ## Objetivo
 
-Um espaço pessoal de estudo em português. A empresa fictícia **Aurora** está construindo um portal de solicitações. Cada necessidade amplia o mapa; nenhuma ferramenta aparece apenas para aumentar a lista.
+Ter um espaço acolhedor para estudar DevOps e engenharia de plataforma: ler com calma, perguntar, experimentar, errar e registrar o que aprendi. Não é preciso saber tudo nem completar uma sequência para fazer parte deste jardim.
 
-<div class="garden-cards"><a href="mapa"><b>01 / Explorar o ciclo</b><span>Quem produz, armazena e executa.</span></a><a href="trilha"><b>02 / Acompanhar a empresa</b><span>Demandas encadeadas, do local à plataforma.</span></a><a href="laboratorios/primeiro-software"><b>03 / Praticar</b><span>Um laboratório executável, com diagnóstico.</span></a><a href="studio.html"><b>04 / Alimentar o jardim</b><span>Escolha um modelo e conecte sua descoberta.</span></a></div>
+Aprendo com problemas que encontro no trabalho e nos estudos. As ferramentas entram quando ajudam a explicar uma necessidade. O mapa cresce junto com essa compreensão.
+
+<div class="garden-cards"><a href="conceitos/index.html"><b>Conceitos</b><span>Entender cada peça, com exemplos, imagens e diagramas.</span></a><a href="mapa.html"><b>Mapa de conhecimentos</b><span>Explorar as relações e descobrir onde cada assunto se conecta.</span></a><a href="laboratorios/index.html"><b>Laboratórios</b><span>Demandas práticas para experimentar e observar resultados.</span></a><a href="studio.html"><b>Registrar uma descoberta</b><span>Guardar uma explicação, uma dúvida ou um próximo estudo.</span></a></div>
 
 ## Passo a passo
 
-Comece pelo [[mapa]]. Abra um conceito, explique com suas palavras e teste uma hipótese. Registre dúvidas sem escondê-las. O status **em estudo** descreve a nota; não avalia a pessoa.
+Escolha o caminho que faz sentido hoje. Abra um conceito se quiser entender uma peça, explore o mapa se quiser enxergar o todo ou entre em um laboratório se quiser experimentar. Você pode voltar, interromper e aprofundar qualquer assunto.
 
-- [[trilha|A história da Aurora]]: capítulos e próximos problemas.
-- [[demandas/primeira-entrega|Primeira demanda]]: objetivo e critérios verificáveis.
-- [[guias/como-contribuir|Como escrever e conectar]]: edição e modelos.
-- [[guias/politicas|Políticas do jardim]]: o que a automação confere.
+O simulador é uma opção dentro da prática: ajuda a experimentar o fluxo sem precisar de uma conta cloud. Os laboratórios executáveis deixam claro o que será executado e como desfazer.
 
 ## Como verificar
 
-Aprender é explicar uma relação, fazer uma alteração e observar o resultado. Guarde o comando, a saída esperada e o que realmente aconteceu.
+Uma descoberta pode ser pequena: conseguir explicar uma relação que antes parecia nebulosa. Registre também o que continua confuso. O status da nota organiza o conteúdo; ele não mede seu valor nem sua capacidade.
 
 ## Conexões
 
-[[mapa]] organiza o fluxo. [[trilha]] conecta práticas à história.
+[[conceitos/index|Conceitos]] reúne as peças. [[mapa|Mapa]] mostra as relações. [[laboratorios/index|Laboratórios]] reúne as demandas de prática.
 
 ## Referências
 
-- [Quartz](https://quartz.jzhao.xyz/)
+- [Aprender com documentação e prática](https://docs.docker.com/get-started/)

@@ -12,6 +12,7 @@
     "conceito"
   ],
   "relations": [
+    {"target": "conceitos/kubernetes", "kind": "configura"},
     {
       "target": "conceitos/s3",
       "kind": "produz"
@@ -52,6 +53,8 @@ Inspecione plan e recursos resultantes; entenda o destino.
 ## Conexões
 
 [[conceitos/s3]] — relação: **produz**. [[mapa]] localiza esta peça no ciclo.
+
+[[conceitos/kubernetes]] — a infraestrutura do cluster pode ser provisionada por IaC.
 
 ## Referências
 

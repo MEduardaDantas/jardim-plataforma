@@ -1,8 +1,8 @@
 {
   "title": "Jardim de Plataforma",
-  "description": "Aprender DevOps conectando problemas, tecnologias e prática. Um jardim de conhecimento em português, por Maria Eduarda.",
+  "description": "Um espaço acolhedor para estudar DevOps e engenharia de plataforma, registrar dúvidas, conectar conceitos e aprender com a prática.",
   "author": "Maria Eduarda",
-  "repository": "seu-usuario/jardim-plataforma",
+  "repository": "MEduardaDantas/jardim-plataforma",
   "branch": "main",
-  "baseUrl": "seu-usuario.github.io/jardim-plataforma"
+  "baseUrl": "meduardadantas.github.io/jardim-plataforma"
 }

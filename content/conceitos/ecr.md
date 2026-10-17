@@ -44,6 +44,17 @@ Trecho didático; não é um arquivo completo.
 image: registry.example/portal:v2
 ```
 
+### Veja a relação
+
+```mermaid
+flowchart TD
+ CI["Pipeline"] -->|publica| R["ECR"]
+ R -->|imagem disponível para pull| N["Runtime no nó"]
+ G["Git: versão desejada"] --> A["Argo CD"]
+ A -->|aplica configuração| K["Kubernetes"]
+ K -->|organiza a execução| N
+```
+
 ## Como verificar
 
 Confira tag/digest, permissão de pull e imagem efetivamente executada.

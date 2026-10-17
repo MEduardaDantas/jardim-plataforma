@@ -12,6 +12,7 @@
     "conceito"
   ],
   "relations": [
+    {"target": "conceitos/pipeline", "kind": "depende-de"},
     {
       "target": "conceitos/s3",
       "kind": "depende-de"
@@ -51,6 +52,8 @@ Altere uma frase e confirme sua presença após geração, publicação e consul
 ## Conexões
 
 [[conceitos/s3]] — relação: **depende-de**. [[mapa]] localiza esta peça no ciclo.
+
+[[conceitos/pipeline]] — uma pipeline pode automatizar a geração e a publicação da documentação.
 
 ## Referências
 

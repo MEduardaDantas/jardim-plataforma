@@ -31,7 +31,7 @@ Garantir estrutura e navegação. Automação valida formato; correção conceit
 ## Passo a passo
 
 - Toda nota tem título, descrição, tipo, etapa, status, datas, tags e relações.
-- Cada tipo tem seções obrigatórias definidas em `policies/content-schema.json`.
+- Cada um dos três tipos tem seções obrigatórias definidas em `policies/content-schema.json`.
 - Caminhos usam minúsculas e hífens. Títulos aceitam acentos.
 - Toda relação aponta para nota existente e aparece como wikilink no corpo.
 - Links entre notas usam wikilinks de caminho completo. HTML bruto não é aceito em novas notas; a apresentação da home é mantida no código.

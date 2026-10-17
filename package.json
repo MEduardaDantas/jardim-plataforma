@@ -24,9 +24,8 @@
     "test:policies": "node --test tests/policies.test.mjs",
     "test:lab": "python3 -m unittest discover -s labs/primeiro-software -p 'test_*.py' -v",
     "prepare:site": "node scripts/prepare.mjs",
-    "build:site": "npm run validate:content && npm run prepare:site && npx quartz build && node scripts/postbuild.mjs",
-    "preview": "npx quartz build --serve",
-    "test:web": "node --test tests/web.test.mjs"
+    "build:site": "npm run validate:content && npm run prepare:site && node quartz/bootstrap-cli.mjs build && node scripts/postbuild.mjs",    "preview": "npx quartz build --serve",
+    "test:web": "node --test tests/web.test.mjs tests/flow.test.mjs tests/map.test.mjs"
   },
   "engines": {
     "npm": ">=10.9.2",

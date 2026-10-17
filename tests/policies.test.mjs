@@ -8,7 +8,7 @@ for(const [name,mutate,pattern] of [
  ['link quebrado',n=>n.body+='\n[[nao-existe]]',/wikilink inexistente/],
  ['data impossível',n=>n.meta.updated='2026-02-30',/datas inválidas/],
  ['modelo incompleto',n=>n.body=n.body.replace('## Exemplo','## Outro'),/seção/],
- ['relação sem texto',n=>n.meta.relations.push({target:'trilha',kind:'depende-de'}),/sem wikilink/],
+ ['relação sem texto',n=>n.meta.relations.push({target:'laboratorios/index',kind:'depende-de'}),/sem wikilink/],
  ['script ativo',n=>n.body+='\n<script>alert(1)</script>',/ativo/],
  ['tag inválida',n=>n.meta.tags=['Tem Espaços'],/tags/],
  ['credencial',n=>n.body+='\nAKIA'+'A'.repeat(16),/credencial/]

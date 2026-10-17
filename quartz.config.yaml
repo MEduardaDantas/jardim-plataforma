@@ -5,7 +5,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: pt-BR
-  baseUrl: seu-usuario.github.io/jardim-plataforma
+  baseUrl: meduardadantas.github.io/jardim-plataforma
   ignorePatterns:
     - private
     - templates
@@ -157,7 +157,7 @@ plugins:
       position: beforeBody
       priority: 10
   - source: "@quartz-community/content-meta"
-    enabled: true
+    enabled: false
     layout:
       position: beforeBody
       priority: 20
@@ -201,7 +201,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/seu-usuario/jardim-plataforma
+        GitHub: https://github.com/MEduardaDantas/jardim-plataforma
     layout:
       position: footer
       priority: 50
@@ -220,7 +220,7 @@ plugins:
     options: {}
     order: 50
   - source: "@quartz-community/note-properties"
-    enabled: false
+    enabled: true
     options:
       includeAll: false
       includedProperties:
@@ -228,14 +228,10 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
-    order: 5
-    layout:
-      position: beforeBody
-      priority: 15
-      display: all
+    order: 0
   - source: "@quartz-community/unlisted-pages"
     enabled: true
     options: {}
