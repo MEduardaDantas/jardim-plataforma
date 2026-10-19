@@ -6,14 +6,14 @@
   "stage": "implantar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-16",
+  "updated": "2026-10-19",
   "tags": [
     "implantar",
     "conceito"
   ],
   "relations": [
     {
-      "target": "conceitos/argo-cd",
+      "target": "conceitos/git",
       "kind": "depende-de"
     },
     {
@@ -49,6 +49,8 @@ replicas: 2
 Compare configuração e recursos reais; confira a política de sincronização.
 
 ## Conexões
+
+[[conceitos/git]] — versiona o estado desejado usado neste fluxo GitOps.
 
 [[conceitos/argo-cd]] — ajuda a compreender a próxima responsabilidade. [[mapa]] localiza esta peça no ciclo.
 

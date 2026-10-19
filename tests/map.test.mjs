@@ -56,6 +56,8 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
     note.title.toLocaleLowerCase('pt-BR').includes('ecr')
   ).length;
 
+  const stored = new Map([['garden-map-layout-v1', JSON.stringify({'conceitos/git':{x:333,y:222}})]]);
+  window.localStorage = {getItem:key=>stored.get(key),setItem:(key,value)=>stored.set(key,value)};
   const ctx = vm.createContext({
     window,
     document,
@@ -72,6 +74,19 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
     '(async () => {\n' + mapScript + '\n})()',
     ctx
   );
+
+  const git = document.querySelector('[data-slug="conceitos/git"]');
+  assert.equal(git.getAttribute('transform'), 'translate(333,222)', 'Restaura posição salva');
+  for (const target of ['github','gitlab','gitops']) {
+    const edge = document.querySelector(`[data-from="conceitos/git"][data-to="conceitos/${target}"]`);
+    assert.ok(edge, `Git é base de ${target}`);
+    assert.equal(edge.querySelector('text').textContent, 'é base de');
+  }
+  document.getElementById('map-reset').onclick();
+  assert.equal(git.getAttribute('transform'), 'translate(333,222)', 'Centralizar preserva posição');
+  document.getElementById('map-organize').onclick();
+  assert.equal(git.getAttribute('transform'), 'translate(130,130)');
+  assert.equal(JSON.parse(stored.get('garden-map-layout-v1'))['conceitos/git'].x,130);
 
   // Confere a quantidade de conceitos e relações renderizados.
   assert.equal(

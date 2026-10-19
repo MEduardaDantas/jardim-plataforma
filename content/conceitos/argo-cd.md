@@ -6,7 +6,7 @@
   "stage": "implantar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-16",
+  "updated": "2026-10-19",
   "tags": [
     "implantar",
     "conceito"
@@ -19,6 +19,10 @@
     {
       "target": "mapa",
       "kind": "documenta"
+    },
+    {
+      "target": "conceitos/gitops",
+      "kind": "implementa"
     }
   ]
 }
@@ -52,6 +56,8 @@ spec:
 Confira diff, Sync Status, Health e comportamento real da aplicação.
 
 ## Conexões
+
+[[conceitos/gitops]] — abordagem implementada pelo Argo CD.
 
 [[conceitos/kubernetes]] — relação: **configura**. [[mapa]] localiza esta peça no ciclo.
 

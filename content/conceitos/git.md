@@ -6,7 +6,7 @@
   "stage": "planejar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "tags": [
     "planejar",
     "conceito",
@@ -14,10 +14,6 @@
     "versionamento"
   ],
   "relations": [
-    {
-      "target": "conceitos/pipeline",
-      "kind": "documenta"
-    },
     {
       "target": "mapa",
       "kind": "documenta"
@@ -204,7 +200,9 @@ Verificações obrigatórias podem bloquear a integração. Mesmo quando a plata
 - [[conceitos/pipeline]] — utiliza versões do repositório para executar verificações e outras etapas automatizadas.
 - [[mapa]] — apresenta as relações entre versionamento e as demais responsabilidades do ciclo de entrega.
 
-GitHub e GitLab complementam este conceito como plataformas de hospedagem e colaboração. Cada um terá sua própria nota no jardim.
+[[conceitos/github|GitHub]] e [[conceitos/gitlab|GitLab]] hospedam repositórios Git. [[conceitos/gitops|GitOps]] utiliza Git como referência versionada do estado desejado.
+
+Versionar configurações de uma ferramenta não significa depender dela. Git pode versionar Dockerfiles, manifests e arquivos de infraestrutura; imagens de container são artefatos armazenados em registries e containers em execução não são versões guardadas no Git.
 
 ## Referências
 

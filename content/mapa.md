@@ -31,13 +31,13 @@ Enxergar como os assuntos que estudo se relacionam. O mapa abaixo mostra os conc
 - Pesquise um nome ou filtre uma etapa do ciclo para localizar assuntos.
 - Ao criar uma nota no Studio, selecione suas relações. Depois da publicação, ela aparece aqui.
 
-As setas têm direção: “CI produz imagem” não significa “imagem produz CI”. Os rótulos aparecem quando você seleciona um conceito. Ícones ajudam a reconhecer ferramentas; conceitos gerais usam símbolos.
+As relações de dependência são apresentadas da base para quem depende dela: Git → é base de → GitHub. As outras setas seguem o verbo da relação: “CI produz imagem” não significa “imagem produz CI”. Os rótulos aparecem quando você seleciona um conceito. Ícones ajudam a reconhecer ferramentas; conceitos gerais usam símbolos.
 
 ## Como verificar
 
 Selecione ECR: ele armazena imagens. Selecione Kubernetes: ele organiza a execução. Para experimentar uma entrega, abra o [simulador](ciclo.html). Para registrar outra relação, use o [Studio](studio.html).
 
-O mapa é calculado a partir das notas. Arrastar cartões muda sua organização visual nesta visita, sem alterar os vínculos publicados.
+O mapa é calculado a partir das notas. As posições dos cartões são salvas neste navegador, sem alterar os vínculos publicados. Use **Reorganizar cartões** para restaurar as colunas. Em outro navegador, a disposição começa pelo padrão.
 
 ## Conexões
 

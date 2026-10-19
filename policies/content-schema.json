@@ -51,7 +51,8 @@
     "observa",
     "depende-de",
     "valida",
-    "documenta"
+    "documenta",
+    "implementa"
   ],
   "required": [
     "title",

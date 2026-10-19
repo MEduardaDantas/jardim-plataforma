@@ -32,3 +32,16 @@ for(const n of readNotes()){
  }
 }
 console.log('Links e recursos locais conferidos.');
+
+const catalog = parseHTML(fs.readFileSync('public/conceitos/index.html','utf8')).document.querySelector('#concept-catalog');
+const concepts = data.notes.filter(n=>n.type==='conceito');
+assert.equal(catalog.querySelectorAll('li').length, concepts.length);
+for(const n of concepts) assert.ok([...catalog.querySelectorAll('a')].some(a=>a.textContent===n.title));
+for(const slug of ['github','gitlab','gitops']){
+ const note=data.notes.find(n=>n.slug==='conceitos/'+slug);
+ assert.equal(note.icon,'icons/'+slug+'.svg');
+ assert.ok(fs.existsSync('public/'+note.icon));
+ const page=parseHTML(fs.readFileSync('public/conceitos/'+slug+'.html','utf8')).document;
+ assert.ok(page.querySelector('.concept-brand img'));
+}
+console.log('Catálogo automático e ícones verificados.');

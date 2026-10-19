@@ -17,6 +17,11 @@ for(const n of notes){
  }
  const canonical=n.slug==='index'?root+'/':root+'/'+n.slug;
  html=html.replace('</head>',`<link rel="canonical" href="${esc(canonical)}"><meta name="author" content="${esc(s.author)}"><meta name="robots" content="index,follow"><script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'Article',headline:n.meta.title,description:n.meta.description,inLanguage:'pt-BR',datePublished:n.meta.created,dateModified:n.meta.updated,author:{'@type':'Person',name:s.author},mainEntityOfPage:canonical}).replaceAll('<','\\u003c')}</script></head>`);
+ if(n.slug==='conceitos/index'){
+ const concepts=notes.filter(note=>note.meta.type==='conceito').sort((a,b)=>a.meta.title.localeCompare(b.meta.title,'pt-BR'));
+ const catalog=`<section id="concept-catalog" aria-label="Todos os conceitos"><h2>Todos os conceitos (${concepts.length})</h2><ul>${concepts.map(note=>`<li><a href="${note.slug.split('/').slice(1).join('/')}.html">${esc(note.meta.title)}</a> — ${esc(note.meta.description)}</li>`).join('')}</ul></section>`;
+ html=html.replace('</article>',catalog+'</article>');
+ }
  if(n.slug==='mapa'){
  html=html.replace('<body', '<body class="garden-map"');
  html=html.replace('</head>','<link rel="stylesheet" href="map.css"><script type="module" src="map.js"></script></head>');
