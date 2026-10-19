@@ -37,7 +37,7 @@ const catalog = parseHTML(fs.readFileSync('public/conceitos/index.html','utf8'))
 const concepts = data.notes.filter(n=>n.type==='conceito');
 assert.equal(catalog.querySelectorAll('li').length, concepts.length);
 for(const n of concepts) assert.ok([...catalog.querySelectorAll('a')].some(a=>a.textContent===n.title));
-for(const slug of ['github','gitlab','gitops']){
+for(const slug of ['github','gitlab','gitops','gitflow','githubflow','trunk-based']){
  const note=data.notes.find(n=>n.slug==='conceitos/'+slug);
  assert.equal(note.icon,'icons/'+slug+'.svg');
  assert.ok(fs.existsSync('public/'+note.icon));

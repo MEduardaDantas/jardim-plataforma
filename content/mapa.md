@@ -25,6 +25,10 @@ Enxergar como os assuntos que estudo se relacionam. O mapa abaixo mostra os conc
 
 ## Passo a passo
 
+As cores agrupam assuntos semelhantes, conforme a legenda. Não indicam dificuldade nem maturidade. Fluxos de trabalho compartilham a mesma cor.
+
+Clique novamente no cartão, clique no fundo ou use Esc para limpar a seleção. Isso não muda o zoom. **Centralizar** retorna ao início em escala legível, sem encolher todo o mapa para caber. Arraste o fundo para explorar os demais cartões.
+
 - **Selecione uma ferramenta** para ler suas relações e abrir a nota.
 - **Arraste os cartões** para reorganizar sua visão. Arraste o fundo para mover o mapa.
 - Use **+ / −**, **Centralizar** e **Tela cheia** para navegar.

@@ -106,6 +106,38 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
 
   assert.ok(document.querySelector('.open-note'));
 
+  first.dispatchEvent(new window.Event('click'));
+  assert.equal(first.getAttribute('aria-pressed'), 'false');
+  assert.equal(document.querySelector('.open-note'), null);
+  first.dispatchEvent(new window.Event('click'));
+  const svg = document.getElementById('concept-network');
+  svg.dispatchEvent(new window.Event('click'));
+  assert.equal(document.querySelector('.concept-node.active'), null);
+  first.dispatchEvent(new window.Event('click'));
+  const escape = new window.Event('keydown', {bubbles:true});
+  escape.key='Escape';first.dispatchEvent(escape);
+  assert.equal(document.querySelector('.concept-node.active'), null);
+  first.dispatchEvent(new window.Event('click'));
+  document.getElementById('map-in').onclick();
+  const beforeClear=document.getElementById('map-viewport').getAttribute('transform');
+  document.getElementById('map-clear').onclick();
+  assert.equal(document.getElementById('map-viewport').getAttribute('transform'),beforeClear);
+  document.getElementById('map-reset').onclick();
+  assert.equal(svg.getAttribute('viewBox'), '0 0 1000 650');
+  assert.ok(document.getElementById('map-viewport').getAttribute('transform').endsWith('scale(1)'));
+  // A pointer click must toggle only once despite the following click event.
+  function pointer(target,type,x=20,y=20){const e=new window.Event(type,{bubbles:true});Object.assign(e,{clientX:x,clientY:y,pointerId:1});target.dispatchEvent(e);}
+  pointer(first,'pointerdown');pointer(svg,'pointerup');svg.dispatchEvent(new window.Event('click'));
+  assert.equal(first.getAttribute('aria-pressed'),'true');
+  pointer(first,'pointerdown');pointer(svg,'pointerup');svg.dispatchEvent(new window.Event('click'));
+  assert.equal(first.getAttribute('aria-pressed'),'false');
+  pointer(first,'pointerdown');pointer(svg,'pointermove',60,60);pointer(svg,'pointerup',60,60);svg.dispatchEvent(new window.Event('click'));
+  assert.equal(first.getAttribute('aria-pressed'),'false','Arrastar não seleciona');
+  for(const slug of ['gitflow','githubflow','trunk-based']){
+    assert.equal(document.querySelector(`[data-slug="conceitos/${slug}"]`).getAttribute('data-family'),'fluxos');
+    assert.ok(fs.existsSync(`web/icons/${slug}.svg`));
+  }
+
   // Confere o contador após buscar por ECR.
   const search = document.getElementById('map-search');
 
