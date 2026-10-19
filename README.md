@@ -56,16 +56,3 @@ O Quartz mantém sua licença MIT em `LICENSE.txt`. As adições deste projeto t
 
 Não há seção separada de decisões ou demandas. URLs antigas são redirecionadas para preservar favoritos. O simulador aceita ações em qualquer ordem, mostra erros e permite recuperação e rollback. Ele não executa infraestrutura real.
 
-## Verificar localmente
-
-```sh
-npm ci
-npm run install-plugins
-npm run test:policies
-npm run test:web
-npm run test:lab
-npm run build:site
-node scripts/check-output.mjs
-```
-
-O check de saída verifica títulos reais no HTML, ausência de metadados no texto, navegação, mapa e catálogo publicado. O parser `note-properties` precisa permanecer ativo; `hidePropertiesView: true` oculta a exibição dos campos sem desativar sua leitura.
