@@ -25,8 +25,6 @@ Enxergar como os assuntos que estudo se relacionam. O mapa abaixo mostra os conc
 
 ## Passo a passo
 
-As cores agrupam assuntos semelhantes, conforme a legenda. Não indicam dificuldade nem maturidade. Fluxos de trabalho compartilham a mesma cor.
-
 Clique novamente no cartão, clique no fundo ou use Esc para limpar a seleção. Isso não muda o zoom. **Centralizar** retorna ao início em escala legível, sem encolher todo o mapa para caber. Arraste o fundo para explorar os demais cartões.
 
 - **Selecione uma ferramenta** para ler suas relações e abrir a nota.
@@ -38,8 +36,6 @@ Clique novamente no cartão, clique no fundo ou use Esc para limpar a seleção.
 As relações de dependência são apresentadas da base para quem depende dela: Git → é base de → GitHub. As outras setas seguem o verbo da relação: “CI produz imagem” não significa “imagem produz CI”. Os rótulos aparecem quando você seleciona um conceito. Ícones ajudam a reconhecer ferramentas; conceitos gerais usam símbolos.
 
 ## Como verificar
-
-Selecione ECR: ele armazena imagens. Selecione Kubernetes: ele organiza a execução. Para experimentar uma entrega, abra o [simulador](ciclo.html). Para registrar outra relação, use o [Studio](studio.html).
 
 O mapa é calculado a partir das notas. As posições dos cartões são salvas neste navegador, sem alterar os vínculos publicados. Use **Reorganizar cartões** para restaurar as colunas. Em outro navegador, a disposição começa pelo padrão.
 

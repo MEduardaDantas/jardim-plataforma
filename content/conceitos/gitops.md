@@ -41,6 +41,26 @@ O código da aplicação descreve sua lógica. A configuração de implantação
 
 A declaração é o que queremos. O estado real é o que existe no ambiente. Um arquivo sozinho não cria recursos.
 
+### O estado desejado é sempre Kubernetes?
+
+Não. GitOps descreve uma forma de operar sistemas; não exige que o sistema seja Kubernetes. O que precisa existir é uma declaração versionada do estado desejado e agentes capazes de buscá-la e reconciliar o sistema correspondente.
+
+No nosso exemplo com Argo CD, o resultado são manifests Kubernetes. Em outros sistemas, a declaração pode representar infraestrutura ou configuração de serviços, desde que exista uma implementação adequada dos princípios de GitOps.
+
+| Arquivo ou conjunto | O que pode representar | Observação |
+| --- | --- | --- |
+| `deployment.yaml` | Imagem, réplicas e configuração dos Pods | Manifesto Kubernetes. |
+| `service.yaml` | Como acessar um conjunto de Pods pela rede | Outro recurso Kubernetes; não é o portal web em si. |
+| Chart Helm e valores | Modelos e parâmetros usados para gerar manifests | Argo CD pode gerar os manifests antes de comparar. |
+| `kustomization.yaml` e patches | Alterações sobre manifests de uma base | Também produzem manifests Kubernetes. |
+| Arquivos Terraform `.tf` | Recursos de infraestrutura, como redes e buckets | Declarar e versionar IaC não basta: um processo de plan/apply isolado não implica reconciliação contínua. Argo CD não executa Terraform nativamente como faz com manifests. |
+
+YAML é formato, não sinônimo de estado desejado. Um workflow de CI também pode ser YAML, mas descreve tarefas de automação. O significado vem do conteúdo e da ferramenta que o interpreta.
+
+![Dois arquivos declarativos no repositório: Deployment pede duas réplicas e uma imagem; Service define acesso aos Pods. A Application informa ao Argo CD onde encontrar esses arquivos.](../assets/estado-desejado.svg)
+
+*Diagrama didático próprio. O arquivo guarda uma declaração; os recursos reais existem no cluster. Os nomes de arquivos são exemplos, não exigências do GitOps.*
+
 ### Os quatro princípios
 
 1. **Declarativo:** expressar o estado desejado.
@@ -111,6 +131,9 @@ Guardar o arquivo e aplicá-lo manualmente, sem um processo contínuo de reconci
 - [[mapa]] — apresenta as relações registradas entre os conceitos.
 
 ## Referências
+
+- [Terraform: propósito da linguagem declarativa](https://developer.hashicorp.com/terraform/language)
+- [Argo CD: ferramentas de configuração suportadas](https://argo-cd.readthedocs.io/en/stable/user-guide/tool_detection/)
 
 - [Princípios do OpenGitOps](https://opengitops.dev/)
 - [Argo CD: visão geral](https://argo-cd.readthedocs.io/en/stable/)
