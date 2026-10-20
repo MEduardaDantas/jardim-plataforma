@@ -171,4 +171,3 @@ Nos dois manifests do exemplo, `selector.matchLabels`, os rótulos do modelo de 
 - [Criação pela interface e capturas oficiais](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 - [Deployments Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Services Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/)
-- [Licença das imagens do projeto](../assets/argocd/LICENSE-ARGO-CD.txt)
