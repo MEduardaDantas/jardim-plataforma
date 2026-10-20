@@ -109,5 +109,3 @@ A sincronização automática, a autocorreção de alterações no cluster (`sel
 - [Argo CD: conceitos centrais](https://argo-cd.readthedocs.io/en/stable/core_concepts/)
 - [Argo CD: política de sincronização](https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/)
 - [Tutorial oficial e origem das capturas](https://argo-cd.readthedocs.io/en/stable/getting_started/)
-- [Créditos das imagens e revisão de origem](../assets/argocd/CREDITOS.txt)
-- [Licença Apache-2.0 das imagens do projeto](../assets/argocd/LICENSE-ARGO-CD.txt)
