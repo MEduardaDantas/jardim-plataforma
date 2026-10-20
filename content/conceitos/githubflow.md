@@ -41,6 +41,11 @@ GitHub é a plataforma. GitHub Flow é o fluxo de trabalho: a distinção é par
 
 ## Exemplo
 
+![Diagrama de branches do githubflow: linhas representam branches e setas mostram os caminhos de integração.](../assets/githubflow/fluxo.svg)
+
+*Diagrama didático próprio. O tempo avança da esquerda para a direita. Linhas são branches, círculos são commits e setas diagonais indicam criação ou integração. Não representam ambientes nem uma hierarquia de máquinas.*
+
+
 Quero esclarecer uma nota do jardim. Crio `docs/explicar-gitops` a partir da principal, altero o texto e abro um PR.
 
 Confiro o diff, a validação e os comentários. Depois da integração, acompanho a pipeline de publicação. O PR aprovado não prova sozinho que o site foi atualizado.

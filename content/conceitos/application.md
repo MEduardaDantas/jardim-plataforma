@@ -52,15 +52,15 @@ Para reconhecer o processo no portal: abra **New App**, preencha identificação
 
 Capturas oficiais do tutorial guestbook. Os valores das imagens pertencem ao tutorial; o exemplo YAML abaixo usa um portal fictício. A interface pode variar conforme a versão.
 
-![Formulário oficial de criação de Application: identificação, projeto e política.](../assets/argocd/app-ui-information.png)
+![Formulário oficial de criação de Application: identificação, projeto e política.](../assets/application/app-ui-information.png)
 
 *Identificação: nome da Application, projeto Argo CD e política de sincronização. AppProject é um agrupamento de regras do Argo CD, não o repositório Git nem o namespace.*
 
-![Formulário oficial com repositório, revisão e caminho da origem.](../assets/argocd/connect-repo.png)
+![Formulário oficial com repositório, revisão e caminho da origem.](../assets/application/connect-repo.png)
 
 *Origem: de onde obter a configuração. O caminho é relativo à raiz do repositório na revisão escolhida.*
 
-![Formulário oficial com cluster e namespace de destino.](../assets/argocd/destination.png)
+![Formulário oficial com cluster e namespace de destino.](../assets/application/destination.png)
 
 *Destino: em qual cluster e namespace gerenciar os recursos. Informar a URL não concede acesso automaticamente; as permissões precisam existir.*
 

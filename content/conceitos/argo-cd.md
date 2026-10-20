@@ -52,17 +52,17 @@ O repositório pode conter manifests prontos ou configurações de Helm/Kustomiz
 
 As imagens abaixo são capturas reais da documentação pública do Argo CD, usando a aplicação de exemplo guestbook. Não são imagens de infraestrutura da RNP. A aparência e os campos podem variar conforme a versão instalada.
 
-![Cartão da Application guestbook na interface oficial do Argo CD.](../assets/argocd/guestbook-app.png)
+![Cartão da Application guestbook na interface oficial do Argo CD.](../assets/argo-cd/guestbook-app.png)
 
 *Observe o nome da Application e as informações de sincronização e saúde. O cartão representa um conjunto gerenciado de recursos, não um Pod individual.*
 
-![Árvore de recursos da aplicação guestbook na interface oficial do Argo CD.](../assets/argocd/guestbook-tree.png)
+![Árvore de recursos da aplicação guestbook na interface oficial do Argo CD.](../assets/argo-cd/guestbook-tree.png)
 
 *As ligações ajudam a inspecionar os recursos associados à Application. Elas mostram relações operacionais entre objetos; não são o mapa de estudos do jardim.*
 
 ## No fluxo de entrega
 
-![Diagrama: Application orienta o Argo CD; Argo CD lê a fonte versionada e se comunica com a API Kubernetes; controladores mantêm os recursos.](../assets/argocd-fluxo.svg)
+![Diagrama: Application orienta o Argo CD; Argo CD lê a fonte versionada e se comunica com a API Kubernetes; controladores mantêm os recursos.](../assets/argo-cd/fluxo.svg)
 
 1. A infraestrutura inicial existe e o Argo CD está instalado.
 2. São configurados os acessos necessários ao repositório e ao cluster.

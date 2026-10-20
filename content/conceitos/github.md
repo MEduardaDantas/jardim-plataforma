@@ -6,7 +6,7 @@
   "stage": "planejar",
   "status": "em-estudo",
   "created": "2026-10-18",
-  "updated": "2026-10-18",
+  "updated": "2026-10-20",
   "tags": [
     "git",
     "colaboracao",
@@ -17,6 +17,10 @@
     {
       "target": "conceitos/git",
       "kind": "depende-de"
+    },
+    {
+      "target": "conceitos/gitops",
+      "kind": "pode-fornecer-fonte-para"
     }
   ]
 }
@@ -69,6 +73,8 @@ Antes de integrar uma alteração:
 Depois de uma publicação, verificar tanto o resultado da automação quanto a página publicada. A existência do commit, sozinha, não comprova que o site foi atualizado.
 
 ## Conexões
+
+[[conceitos/gitops]] — esta plataforma pode hospedar o repositório usado como fonte versionada. É uma opção de hospedagem, não uma dependência obrigatória da abordagem.
 
 - [[conceitos/git|Git]] — depende-de.
 

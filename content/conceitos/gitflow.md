@@ -45,6 +45,11 @@ Branches não são ambientes. Ter `develop` não cria um servidor de desenvolvim
 
 ## Exemplo
 
+![Diagrama de branches do gitflow: linhas representam branches e setas mostram os caminhos de integração.](../assets/gitflow/fluxo.svg)
+
+*Diagrama didático próprio. O tempo avança da esquerda para a direita. Linhas são branches, círculos são commits e setas diagonais indicam criação ou integração. Não representam ambientes nem uma hierarquia de máquinas.*
+
+
 Quero adicionar uma busca ao portal. No exemplo, crio `feature/busca` a partir de `develop` e integro nela após revisar a mudança.
 
 Quando o conjunto da próxima versão está definido, uma release permite prepará-lo antes da integração na principal. Fazer merge não executa, por si só, uma publicação: isso depende das automações do projeto.

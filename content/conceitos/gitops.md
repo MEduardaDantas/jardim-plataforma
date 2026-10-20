@@ -57,7 +57,7 @@ No nosso exemplo com Argo CD, o resultado são manifests Kubernetes. Em outros s
 
 YAML é formato, não sinônimo de estado desejado. Um workflow de CI também pode ser YAML, mas descreve tarefas de automação. O significado vem do conteúdo e da ferramenta que o interpreta.
 
-![Dois arquivos declarativos no repositório: Deployment pede duas réplicas e uma imagem; Service define acesso aos Pods. A Application informa ao Argo CD onde encontrar esses arquivos.](../assets/estado-desejado.svg)
+![Dois arquivos declarativos no repositório: Deployment pede duas réplicas e uma imagem; Service define acesso aos Pods. A Application informa ao Argo CD onde encontrar esses arquivos.](../assets/gitops/estado-desejado.svg)
 
 *Diagrama didático próprio. O arquivo guarda uma declaração; os recursos reais existem no cluster. Os nomes de arquivos são exemplos, não exigências do GitOps.*
 
@@ -123,6 +123,8 @@ Uma mudança manual pode ficar fora do histórico Git, mesmo que existam logs de
 Guardar o arquivo e aplicá-lo manualmente, sem um processo contínuo de reconciliação com a fonte, não completa os princípios de GitOps.
 
 ## Conexões
+
+[[conceitos/github|GitHub]] e [[conceitos/gitlab|GitLab]] podem hospedar a fonte versionada consultada pelos agentes. As setas indicam essa possibilidade, não uma ordem histórica nem uma exigência de fornecedor.
 
 - [[conceitos/git]] — versiona as declarações no fluxo que estamos estudando.
 - [[conceitos/argo-cd]] — ferramenta que implementa GitOps para Kubernetes.

@@ -88,6 +88,12 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
   assert.equal(git.getAttribute('transform'), 'translate(130,130)');
   assert.equal(JSON.parse(stored.get('garden-map-layout-v1'))['conceitos/git'].x,130);
 
+  for (const source of ['github','gitlab']) {
+    const edge=document.querySelector(`[data-from="conceitos/${source}"][data-to="conceitos/gitops"]`);
+    assert.ok(edge,'Hospedagem opcional deve aparecer no mapa');
+    assert.equal(edge.querySelector('text').textContent,'pode fornecer a fonte para');
+  }
+
   // Confere a quantidade de conceitos e relações renderizados.
   assert.equal(
     document.querySelectorAll('.concept-node').length,

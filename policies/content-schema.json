@@ -52,7 +52,8 @@
     "depende-de",
     "valida",
     "documenta",
-    "implementa"
+    "implementa",
+    "pode-fornecer-fonte-para"
   ],
   "required": [
     "title",

@@ -41,6 +41,11 @@ GitHub Flow e Trunk-Based podem se sobrepor. Um fluxo de PRs rápidos e mudança
 
 ## Exemplo
 
+![Diagrama de branches do trunk-based: linhas representam branches e setas mostram os caminhos de integração.](../assets/trunk-based/fluxo.svg)
+
+*Diagrama didático próprio. O tempo avança da esquerda para a direita. Linhas são branches, círculos são commits e setas diagonais indicam criação ou integração. Não representam ambientes nem uma hierarquia de máquinas.*
+
+
 Para construir uma busca no portal, posso dividir o trabalho em mudanças verificáveis: preparar uma função interna, acrescentar seus testes e depois integrar a interface.
 
 Cada mudança deve preservar o funcionamento esperado. Se a funcionalidade incompleta não puder aparecer ao usuário, preciso planejar como ocultá-la, em vez de simplesmente integrar código quebrado.
