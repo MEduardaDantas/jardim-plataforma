@@ -13,3 +13,13 @@ body.garden-map .page{max-width:1600px;width:96%;margin:auto}body.garden-map .pa
 .concept-node.active rect,.concept-node:focus rect{stroke:var(--family-ink);stroke-width:4}
 .map-legend{display:flex;flex-wrap:wrap;gap:8px;padding:12px 20px}
 .family-key{background:var(--family-fill);color:var(--family-ink);border:1px solid var(--family-stroke);border-radius:20px;padding:5px 10px;font-size:.78rem}
+
+/* Outline identifies nature; fill still identifies subject. */
+.nature-ferramenta rect{stroke-dasharray:none}
+.nature-conceito rect{stroke-dasharray:1 6;stroke-linecap:round;stroke-width:2}
+.nature-recurso rect{stroke-dasharray:4 5;stroke-width:1.2;stroke-opacity:.45}
+.concept-node.active rect,.concept-node:focus rect{stroke-opacity:1;stroke-width:3}
+.map-nature-legend{padding-top:0;border-bottom:1px solid var(--lightgray)}
+.nature-key{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--dark)}
+.nature-key svg{flex-shrink:0}
+.nature-key rect{fill:none;stroke:currentColor}

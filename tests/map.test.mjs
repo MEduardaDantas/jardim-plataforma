@@ -144,6 +144,18 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
     assert.ok(fs.existsSync(`web/icons/${slug}.svg`));
   }
 
+  for(const [slug,nature] of Object.entries({git:'ferramenta',github:'ferramenta','argo-cd':'ferramenta',gitops:'conceito',gitflow:'conceito',githubflow:'conceito','trunk-based':'conceito',application:'recurso',applicationset:'recurso'})){
+    const node=document.querySelector(`[data-slug="conceitos/${slug}"]`);
+    assert.equal(node.getAttribute('data-nature'),nature);
+    assert.ok(node.classList.contains('nature-'+nature));
+  }
+  assert.equal(document.querySelectorAll('#map-nature-legend .nature-key').length,3);
+  const application=document.querySelector('[data-slug="conceitos/application"]');
+  const enter=new window.Event('keydown');enter.key='Enter';
+  application.dispatchEvent(enter);
+  assert.match(document.getElementById('map-detail').textContent,/Recurso de uma ferramenta/);
+  document.getElementById('map-clear').onclick();
+
   // Confere o contador após buscar por ECR.
   const search = document.getElementById('map-search');
 
