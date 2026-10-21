@@ -16,75 +16,65 @@
 }
 ---
 
-## Contexto
+# Entregar uma mudança compatível sem interromper os consumidores
 
-Uma equipe mantém um serviço de consulta usado por dois consumidores. O contrato atual retorna identificador, nome e situação de um recurso. Um novo consumidor precisa receber também a versão da aplicação e uma categoria opcional; o consumidor antigo não pode quebrar. Enquanto você prepara essa mudança, outra pessoa corrige o tratamento de recursos inexistentes. As duas entregas afetam o mesmo trecho. A demanda termina com uma versão revisada e utilizável na linha principal, acompanhada de instruções de recuperação.
+[Organização](https://github.com/jardim-plataforma) · [Repositório](https://github.com/jardim-plataforma/lab-01-entrega-compativel)
 
-## Objetivo da entrega
+## Demanda
 
-Incorporar a evolução do contrato e a correção concorrente usando branches curtas e revisão, preservando o comportamento do consumidor existente. GitHub Flow é o fluxo escolhido; sua lógica pode ser praticada no GitLab usando merge requests.
+Uma equipe mantém um catálogo consultado pelo portal de operações e por uma integração legada. Ambos usam `GET /api/v1/recursos/{id}`. Para recursos existentes, recebem `id`, `nome` e `status`. O portal exibe os dados; a integração valida estritamente os três campos antes de processar a resposta.
 
-## Ponto de partida
+Uma nova equipe precisa integrar um painel de acompanhamento. Ela precisa dos três campos existentes e também de `unidade` e `responsavel`. Esses dados já estão no armazenamento, mas ainda não são expostos pela API. O novo consumidor deve receber os cinco campos preenchidos para os registros da massa de teste.
 
-Use o repositório desta demanda e a base de estudo fornecida. O ponto inicial deve demonstrar: consulta de recurso existente retorna os três campos atuais; consulta inexistente retorna uma resposta de erro definida. Uma implementação pequena ou fixture executável basta. Guarde um teste de cada comportamento antes de evoluir. Registre no README o contrato, o comando de execução e o de verificação. Não invente resultados de um serviço que ainda não foi preparado.
+A integração antiga não poderá ser atualizada nesta entrega. Você precisa disponibilizar a nova capacidade, preservando as consultas existentes. Este contrato e os nomes dos campos são definições fictícias deste kit, não requisitos extraídos de código da RNP.
+
+Paralelamente, outra pessoa está corrigindo a consulta de recursos inexistentes: em vez de HTTP 200 com objeto vazio, ela deverá responder HTTP 404 com um erro estruturado. Essa entrega toca o mesmo módulo de endpoint. Você começa sua implementação sem esperar, mas precisa integrar e validar as duas mudanças antes de concluir.
+
+## Resultado esperado
+
+A linha principal deve conter uma versão utilizável que atenda os consumidores antigos e permita testar o novo consumidor. A revisão precisa demonstrar por que o contrato continua compatível, qual interface o novo consumidor usa e como recuperar uma versão anterior se a mudança causar regressão.
+
+Neste laboratório, “não interromper” significa preservar o comportamento dos consumidores durante a evolução de contrato. Não haverá comprovação de disponibilidade contínua nem deploy sem downtime: isso exige um ambiente de implantação que ainda não está neste escopo.
+
+## Iniciar e trabalhar
+
+Comece da referência `lab01-inicio`, criada conforme `docs/cenario-git.md`. A branch temporária `feat/consulta-ampliada` será sua branch de resolução. Ela recebe commits e um PR para `main`; não é uma segunda linha permanente. O snapshot inicial continuará acessível pela tag.
+
+Primeiro execute o sistema, os clientes e a suíte. Leia o caminho da requisição no diagrama e identifique o contrato de cada consumidor. Experimente consultar um ID ausente para conhecer o defeito já registrado. Depois escolha como expor os dados novos e explique a decisão no PR.
+
+Não há prescrição de solução pronta: avalie uma interface versionada ou uma extensão explicitamente solicitada, por exemplo. Identificar o chamador não substitui definir o contrato. Este kit não implementa autenticação; um nome de consumidor informado na requisição não comprova identidade.
+
+Enquanto a feature estiver em andamento, introduza a correção concorrente seguindo o roteiro. Integre a `main` atualizada à feature, resolva conflitos se houver e examine a compatibilidade mesmo se não houver conflito textual. Preserve os testes dos consumidores existentes e acrescente testes do novo contrato e dos erros da interface escolhida.
+
+## Critérios de aceite
+
+- Portal A e integração B continuam aceitando todos os recursos existentes, sem modificar seus contratos para esconder uma quebra.
+- O consumidor C recebe os cinco campos não vazios. A URL e qualquer seleção de versão ficam documentadas; o programa `consumidores/novo_consumidor.py` permite verificar uma URL completa, incluindo query string se adotada.
+- Recursos inexistentes retornam HTTP 404 com `erro.codigo = RECURSO_INEXISTENTE` e `erro.id` igual ao ID solicitado, tanto na interface antiga quanto na interface que você entregar.
+- A correção concorrente e seu teste sobrevivem à integração. Testes novos validam também o caminho HTTP real, além de funções isoladas.
+- O PR registra a escolha de contrato, alterações, verificações e riscos. Quando houver outra pessoa, ela revisa; se trabalhar sozinha, declare a revisão como exercício individual, sem simular uma aprovação independente.
+- `main` termina com as entregas integradas e testadas. Registre o commit final e a versão de software utilizada.
+- Documente uma recuperação que retire a feature sem apagar a correção de ausência. Explique que o consumidor novo perde a capacidade recém-introduzida se a feature for revertida.
+
+## Seu papel
+
+O código de aplicação é o material de treino para praticar integração, compatibilidade, revisão, diagnóstico e recuperação. Isso não transfere para você a responsabilidade corporativa de desenvolver regras de negócio. Em um trabalho real, a equipe dona da aplicação participaria da decisão do contrato; Plataforma apoiaria o caminho de entrega e os controles aplicáveis.
+
+Sua resolução será escrita quando você executar o trabalho, com as decisões e resultados reais. Não há relatório preenchido nem solução pronta neste pacote.
+
+## Arquitetura atual
 
 
-
-### Repositório desta demanda
-
-Organização: [Jardim de Plataforma](https://github.com/jardim-plataforma). Nome previsto: `lab-01-entrega-compativel`. Crie-o nessa organização quando iniciar a prática; o pacote contém seu README e enunciado. O endereço previsto é `https://github.com/jardim-plataforma/lab-01-entrega-compativel` — ele só estará disponível depois da criação.
-
-Comece da mesma base `servico-catalogo`, fornecida no pacote da organização. Os três fluxos partem de cópias independentes; não reutilize o resultado de um fluxo como ponto inicial de outro.
-
-O README registra ponto de partida, como executar, como verificar e o link para este enunciado. Commits, PRs e arquivos de resolução ficam neste repositório. O texto de aprendizado pode ser publicado no jardim. Não é necessário criar projetos no GitLab.
-
-## Desenvolvimento da demanda
+As setas abaixo mostram requisições/chamadas. As respostas retornam pelo mesmo caminho.
 
 ```mermaid
 flowchart TD
- A["Contrato atual"] --> B["Evolução de contrato"]
- A --> C["Correção concorrente"]
- C --> D["Principal atualizada"]
- D --> B
- B --> E["Revisão e verificação dos consumidores"]
- E --> F["Versão integrada"]
+  A["Portal A · navegador"] -->|"GET /api/v1/recursos/id"| H["Entrada HTTP"]
+  B["Integração B · cliente legado"] -->|"mesma API v1"| H
+  H --> E["Endpoint + contrato v1"]
+  E --> S["Serviço de consulta"]
+  S --> R["Repositório de dados"]
+  R --> D["JSON · dados fictícios"]
 ```
 
-### Delimitar a entrega
-
-Descreva a resposta esperada pelos dois consumidores, quais campos são obrigatórios e como a versão será informada. Separe compatibilidade funcional de formatação interna. A principal precisa continuar utilizável durante o trabalho.
-
-### Trabalhar com concorrência real
-
-Parta de um commit inicial comum em duas cópias. Em uma, desenvolva os novos campos; em outra, corrija a resposta para recurso inexistente. Integre a correção primeiro. Atualize a branch da funcionalidade e confronte o diff com as duas intenções; resolva qualquer conflito sem perder a correção.
-
-### Conduzir a revisão
-
-Abra PR com contrato anterior, contrato proposto, resultados das verificações e impacto sobre consumidores. Incorpore uma solicitação de revisão na mesma proposta. Organize commits por mudanças compreensíveis, sem meta artificial de quantidade.
-
-### Concluir e recuperar
-
-Depois da integração, execute as verificações a partir de uma cópia limpa da principal. Provoque uma regressão de compatibilidade numa tentativa isolada e recupere por uma mudança rastreável. Diferencie integrar código de implantar um serviço.
-
-## Incidente para investigar
-
-A implementação nova funciona para o consumidor novo, mas remove um campo ainda usado pelo antigo. A revisão deve descobrir a regressão e a recuperação precisa preservar a correção concorrente.
-
-## Critérios de conclusão
-
-O resultado é uma mudança integrada com ambos os contratos atendidos, revisão rastreável, evidência do comportamento antes/depois e recuperação demonstrada. O diff faz parte da análise da entrega; não é o produto final. Sem outra pessoa disponível, a revisão independente fica explicitamente pendente.
-
-As evidências fazem parte da entrega: resultados reproduzíveis, diferenças relevantes, histórico de revisão e observações do serviço devem sustentar suas conclusões. Escolha texto, logs, tabelas ou imagens conforme o que precisa demonstrar.
-
-### Aceitação em uma entrega de equipe
-
-O consumidor legado deve continuar aceitando uma resposta de sucesso e uma resposta de recurso inexistente; o consumidor novo deve receber os campos adicionais. Execute ambos a partir do mesmo commit integrado e demonstre que a correção concorrente foi preservada.
-
-### Comparação com GitLab
-
-No GitLab, a mesma proposta usa merge request, branches e revisão. GitHub Flow não obriga hospedar o código no GitHub. Nesta prática, a execução e a evidência serão no GitHub.
-
-## Referências
-
-- https://docs.github.com/en/get-started/using-github/github-flow
-- https://docs.gitlab.com/user/project/merge_requests/
+O portal é um frontend funcional. A integração B é um programa de terminal, representando outro sistema consumidor. Ambos consultam o mesmo backend. O JSON já contém cinco campos por registro; a projeção v1 retorna somente três. Não são três livros nem três serviços obrigatoriamente: são três campos em cada resposta de recurso.
