@@ -48,7 +48,7 @@ Há dois caminhos possíveis de entrega, não duas etapas obrigatórias:
 - Com Argo CD: a pipeline pode atualizar a referência da imagem na configuração versionada. Argo CD acompanha essa fonte e aplica a alteração conforme sua política de sincronização. A integração passa pelo Git; publicar uma imagem no registry não basta.
 - Com implantação direta: uma etapa de CD pode aplicar manifestos ao Kubernetes usando credenciais autorizadas, sem Argo CD.
 
-GitHub Actions e GitLab CI/CD são serviços que podem executar pipelines com runners. GitOps é uma abordagem de operação; Argo CD é uma implementação dela. Para manter o mapa focado, as ligações desta nota mostram o artefato produzido e os dois caminhos de implantação, sem acrescentar todas as plataformas possíveis.
+GitHub Actions e GitLab CI/CD são serviços que podem executar pipelines com runners. GitOps é uma abordagem de operação; Argo CD é uma implementação dela. Para manter o mapa focado, as ligações desta nota mostram o artefato produzido e os dois caminhos de implantação, incluindo também as plataformas de execução estudadas.
 
 ## Exemplo
 
@@ -69,6 +69,9 @@ Associe o resultado dos jobs e artefatos ao commit testado.
 - [[conceitos/imagens]] — uma pipeline pode construir imagens.
 - [[conceitos/argo-cd]] — pode atualizar a fonte versionada acompanhada pelo Argo CD; não é dependência obrigatória.
 - [[conceitos/kubernetes]] — uma etapa de CD pode implantar diretamente no cluster; é alternativa ao caminho com Argo CD.
+
+- [[conceitos/github]] — GitHub Actions organiza workflows executados em runners.
+- [[conceitos/gitlab]] — GitLab CI/CD organiza pipelines executadas em runners.
 
 ## Referências
 

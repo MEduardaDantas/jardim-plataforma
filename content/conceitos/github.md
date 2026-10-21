@@ -6,7 +6,7 @@
   "stage": "planejar",
   "status": "em-estudo",
   "created": "2026-10-18",
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "tags": [
     "git",
     "colaboracao",
@@ -21,10 +21,15 @@
     {
       "target": "conceitos/gitops",
       "kind": "pode-fornecer-fonte-para"
+    },
+    {
+      "target": "conceitos/pipeline",
+      "kind": "executa-via-actions"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -77,6 +82,8 @@ Depois de uma publicação, verificar tanto o resultado da automação quanto a 
 [[conceitos/gitops]] — esta plataforma pode hospedar o repositório usado como fonte versionada. É uma opção de hospedagem, não uma dependência obrigatória da abordagem.
 
 - [[conceitos/git|Git]] — depende-de.
+
+[[conceitos/pipeline]] — GitHub Actions organiza a execução de workflows/pipelines, cujos jobs são executados por runners. Esta funcionalidade fica nesta nota, sem exigir um artigo separado agora.
 
 ## Referências
 

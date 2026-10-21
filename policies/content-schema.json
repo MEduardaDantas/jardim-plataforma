@@ -60,7 +60,9 @@
     "utiliza",
     "armazenada-em",
     "pode-atualizar-fonte-de",
-    "pode-implantar-em"
+    "pode-implantar-em",
+    "executa-via-actions",
+    "executa-via-gitlab-ci"
   ],
   "required": [
     "title",
