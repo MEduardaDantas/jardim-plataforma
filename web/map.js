@@ -45,7 +45,7 @@ const initialDetail=$('map-detail').innerHTML;
 function clearSelection(){selected=null;$('map-detail').innerHTML=initialDetail;filter();}
 const edges=[];for(const n of nodes)for(const r of n.relations)if(bySlug.has(r.target)){
  const inverse={'depende-de':'é base de','implementa':'é implementado por'}[r.kind];
- edges.push(inverse?{from:bySlug.get(r.target),to:n,kind:inverse}:{from:n,to:bySlug.get(r.target),kind:({'pode-fornecer-fonte-para':'pode fornecer a fonte para','utiliza':'utiliza','armazenada-em':'é armazenada em','versiona-arquivos-em':'versiona arquivos em','representa-configuracoes-de':'representa configurações de','condiciona-compatibilidade-de':'condiciona a compatibilidade de'}[r.kind]||r.kind)});
+ edges.push(inverse?{from:bySlug.get(r.target),to:n,kind:inverse}:{from:n,to:bySlug.get(r.target),kind:({'pode-fornecer-fonte-para':'pode fornecer a fonte para','pode-atualizar-fonte-de':'pode atualizar a fonte Git de','pode-implantar-em':'pode implantar diretamente em','utiliza':'utiliza','armazenada-em':'é armazenada em','versiona-arquivos-em':'versiona arquivos em','representa-configuracoes-de':'representa configurações de','condiciona-compatibilidade-de':'condiciona a compatibilidade de'}[r.kind]||r.kind)});
 }
 let selected=null,zoom=1,panX=0,panY=0,drag=null,moved=false,suppressClick=false;
 for(const e of edges){e.el=create('g',{'class':'map-edge','data-from':e.from.slug,'data-to':e.to.slug});e.line=create('line',{'marker-end':'url(#arrow)'});e.label=create('text',{'text-anchor':'middle'},e.kind);e.el.append(e.line,e.label);$('map-edges').append(e.el);}

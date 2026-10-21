@@ -6,13 +6,12 @@
   "stage": "publicar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-16",
+  "updated": "2026-10-21",
   "tags": [
     "publicar",
     "conceito"
   ],
   "relations": [
-    {"target": "conceitos/pipeline", "kind": "depende-de"},
     {
       "target": "conceitos/s3",
       "kind": "depende-de"
@@ -24,6 +23,7 @@
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -53,7 +53,7 @@ Altere uma frase e confirme sua presença após geração, publicação e consul
 
 [[conceitos/s3]] — relação: **depende-de**. [[mapa]] localiza esta peça no ciclo.
 
-[[conceitos/pipeline]] — uma pipeline pode automatizar a geração e a publicação da documentação.
+A geração e a publicação da documentação podem ser automatizadas; essa ligação fica fora do recorte atual do mapa.
 
 ## Referências
 

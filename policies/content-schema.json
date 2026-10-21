@@ -58,7 +58,9 @@
     "representa-configuracoes-de",
     "condiciona-compatibilidade-de",
     "utiliza",
-    "armazenada-em"
+    "armazenada-em",
+    "pode-atualizar-fonte-de",
+    "pode-implantar-em"
   ],
   "required": [
     "title",
