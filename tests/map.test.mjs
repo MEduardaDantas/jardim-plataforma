@@ -156,6 +156,12 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
   assert.match(document.getElementById('map-detail').textContent,/Recurso de uma ferramenta/);
   document.getElementById('map-clear').onclick();
 
+  const yamlEdge=document.querySelector('[data-from="conceitos/git"][data-to="conceitos/yaml"]');
+  assert.equal(yamlEdge.querySelector('text').textContent,'versiona arquivos em');
+  assert.equal(document.querySelector('[data-slug="conceitos/yaml"]').getAttribute('data-nature'),'conceito');
+  assert.equal(document.querySelector('[data-slug="conceitos/docker-hub"]').getAttribute('data-nature'),'ferramenta');
+  assert.equal(document.querySelector('[data-from="conceitos/helm"][data-to="conceitos/yaml"]'),null);
+
   // Confere o contador após buscar por ECR.
   const search = document.getElementById('map-search');
 

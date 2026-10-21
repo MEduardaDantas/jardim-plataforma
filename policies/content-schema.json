@@ -53,7 +53,10 @@
     "valida",
     "documenta",
     "implementa",
-    "pode-fornecer-fonte-para"
+    "pode-fornecer-fonte-para",
+    "versiona-arquivos-em",
+    "representa-configuracoes-de",
+    "condiciona-compatibilidade-de"
   ],
   "required": [
     "title",

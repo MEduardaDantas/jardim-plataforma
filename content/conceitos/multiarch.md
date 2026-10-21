@@ -6,7 +6,7 @@
   "stage": "construir",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-16",
+  "updated": "2026-10-21",
   "tags": [
     "construir",
     "conceito"
@@ -14,7 +14,7 @@
   "relations": [
     {
       "target": "conceitos/imagens",
-      "kind": "depende-de"
+      "kind": "condiciona-compatibilidade-de"
     },
     {
       "target": "mapa",
@@ -31,6 +31,8 @@ Executar em máquinas com conjuntos de instruções diferentes.
 ## Como funciona
 
 AMD64 é x86 de 64 bits, usado também por Intel. ARM64 é outra arquitetura. Sistema operacional e arquitetura são dimensões distintas.
+
+Esta é uma conexão para aprofundamento posterior: a imagem selecionada precisa atender à plataforma de destino. Um índice multi-plataforma pode apontar para variantes compatíveis. Não é requisito estudar esse tema antes do básico de imagens.
 
 ## No fluxo de entrega
 
@@ -50,7 +52,7 @@ Além do build, execute testes nas plataformas alvo.
 
 ## Conexões
 
-[[conceitos/imagens]] — ajuda a compreender a próxima responsabilidade. [[mapa]] localiza esta peça no ciclo.
+[[conceitos/imagens]] — a arquitetura condiciona a compatibilidade dos binários contidos na imagem. AMD64/ARM64 não dependem de imagens para existir. [[mapa]] localiza esta peça no ciclo.
 
 ## Referências
 

@@ -6,7 +6,7 @@
   "stage": "planejar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-19",
+  "updated": "2026-10-21",
   "tags": [
     "planejar",
     "conceito",
@@ -17,6 +17,10 @@
     {
       "target": "mapa",
       "kind": "documenta"
+    },
+    {
+      "target": "conceitos/yaml",
+      "kind": "versiona-arquivos-em"
     }
   ]
 }
@@ -203,6 +207,8 @@ Verificações obrigatórias podem bloquear a integração. Mesmo quando a plata
 [[conceitos/github|GitHub]] e [[conceitos/gitlab|GitLab]] hospedam repositórios Git. [[conceitos/gitops|GitOps]] utiliza Git como referência versionada do estado desejado.
 
 Versionar configurações de uma ferramenta não significa depender dela. Git pode versionar Dockerfiles, manifests e arquivos de infraestrutura; imagens de container são artefatos armazenados em registries e containers em execução não são versões guardadas no Git.
+
+[[conceitos/yaml]] — Git pode versionar arquivos nesse formato, assim como outros arquivos. A ligação descreve versionamento, não dependência entre ferramentas.
 
 ## Referências
 

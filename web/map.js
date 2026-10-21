@@ -21,14 +21,14 @@ const families={
  fluxos:{label:'Fluxos de trabalho',slugs:['gitflow','githubflow','trunk-based']},
  versoes:{label:'Versionamento e colaboração',slugs:['git','github','gitlab']},
  entrega:{label:'Entrega e configuração',slugs:['gitops','argo-cd','application','applicationset','helm','kustomize','pipeline','yaml']},
- execucao:{label:'Execução e artefatos',slugs:['kubernetes','imagens','ecr','multiarch']},
+ execucao:{label:'Execução e artefatos',slugs:['kubernetes','docker','dockerfile','imagens','containers','registry','docker-hub','ecr','multiarch']},
  plataforma:{label:'Infraestrutura e operação',slugs:['iac','s3','observabilidade','seguranca','techdocs']},
  outros:{label:'Outros conceitos',slugs:[]}
 };
 for(const n of nodes)n.family=Object.keys(families).find(key=>families[key].slugs.includes(n.slug.split('/').pop()))||'outros';
 // Nature is independent of the note template and subject color.
 const natures={
- ferramenta:{label:'Ferramenta ou serviço',slugs:['git','github','gitlab','argo-cd','helm','kustomize','kubernetes','ecr','s3','techdocs','docker']},
+ ferramenta:{label:'Ferramenta ou serviço',slugs:['git','github','gitlab','argo-cd','helm','kustomize','kubernetes','ecr','s3','techdocs','docker','docker-hub']},
  recurso:{label:'Recurso de uma ferramenta',slugs:['application','applicationset']},
  conceito:{label:'Conceito, prática ou formato',slugs:[]}
 };
@@ -45,7 +45,7 @@ const initialDetail=$('map-detail').innerHTML;
 function clearSelection(){selected=null;$('map-detail').innerHTML=initialDetail;filter();}
 const edges=[];for(const n of nodes)for(const r of n.relations)if(bySlug.has(r.target)){
  const inverse={'depende-de':'é base de','implementa':'é implementado por'}[r.kind];
- edges.push(inverse?{from:bySlug.get(r.target),to:n,kind:inverse}:{from:n,to:bySlug.get(r.target),kind:r.kind==='pode-fornecer-fonte-para'?'pode fornecer a fonte para':r.kind});
+ edges.push(inverse?{from:bySlug.get(r.target),to:n,kind:inverse}:{from:n,to:bySlug.get(r.target),kind:({'pode-fornecer-fonte-para':'pode fornecer a fonte para','versiona-arquivos-em':'versiona arquivos em','representa-configuracoes-de':'representa configurações de','condiciona-compatibilidade-de':'condiciona a compatibilidade de'}[r.kind]||r.kind)});
 }
 let selected=null,zoom=1,panX=0,panY=0,drag=null,moved=false,suppressClick=false;
 for(const e of edges){e.el=create('g',{'class':'map-edge','data-from':e.from.slug,'data-to':e.to.slug});e.line=create('line',{'marker-end':'url(#arrow)'});e.label=create('text',{'text-anchor':'middle'},e.kind);e.el.append(e.line,e.label);$('map-edges').append(e.el);}

@@ -6,7 +6,7 @@
   "stage": "verificar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-16",
+  "updated": "2026-10-21",
   "tags": [
     "verificar",
     "conceito"
@@ -31,6 +31,10 @@ Entender origem, composição e riscos da entrega.
 ## Como funciona
 
 SBOM descreve componentes; provenance registra origem/processo; assinatura permite verificar autenticidade e integridade sob uma política de confiança. Scan procura vulnerabilidades.
+
+### Por que aparece ligada a imagens?
+
+A ligação representa verificações sobre o artefato: de onde veio, quais componentes contém e quais evidências acompanham sua entrega. É um assunto de aprofundamento, não uma ferramenta necessária para criar qualquer container. No mapa, “valida” resume a atuação dessas verificações, não uma garantia automática de segurança.
 
 ## No fluxo de entrega
 
