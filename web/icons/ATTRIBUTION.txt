@@ -3,3 +3,5 @@
 GitHub e GitLab: Devicon, ícones originais. GitOps: símbolo ilustrativo próprio de versionamento e reconciliação; não é uma marca oficial.
 
 Git Flow, GitHub Flow e Trunk-Based: símbolos próprios de ramificação e integração, não logotipos oficiais.
+
+Docker: ativo Devicon já presente no projeto, movido para a nota da ferramenta. Imagens e containers: símbolos próprios, sem marca oficial.

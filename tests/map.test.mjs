@@ -162,6 +162,15 @@ test('mapa renderiza conceitos, relações, filtro e seleção', async () => {
   assert.equal(document.querySelector('[data-slug="conceitos/docker-hub"]').getAttribute('data-nature'),'ferramenta');
   assert.equal(document.querySelector('[data-from="conceitos/helm"][data-to="conceitos/yaml"]'),null);
 
+  const neighbors=slug=>[...document.querySelectorAll('.map-edge')]
+    .filter(e=>[e.getAttribute('data-from'),e.getAttribute('data-to')].includes('conceitos/'+slug))
+    .map(e=>[e.getAttribute('data-from'),e.getAttribute('data-to')].find(x=>x!=='conceitos/'+slug).replace('conceitos/','')).sort();
+  for(const [slug,expected] of Object.entries({yaml:['git'],docker:['dockerfile'],dockerfile:['docker','imagens'],imagens:['containers','dockerfile','multiarch','pipeline','registry'],containers:['imagens'],registry:['docker-hub','ecr','imagens'],'docker-hub':['registry'],ecr:['registry']})){
+    assert.deepEqual(neighbors(slug),expected.sort(),`Conexões exatas de ${slug}`);
+  }
+  assert.equal(document.querySelector('[data-slug="conceitos/seguranca"]'),null);
+  for(const slug of ['docker','containers','imagens'])assert.ok(fs.existsSync(`web/icons/${slug}.svg`));
+
   // Confere o contador após buscar por ECR.
   const search = document.getElementById('map-search');
 

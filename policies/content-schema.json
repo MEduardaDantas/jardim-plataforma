@@ -56,7 +56,9 @@
     "pode-fornecer-fonte-para",
     "versiona-arquivos-em",
     "representa-configuracoes-de",
-    "condiciona-compatibilidade-de"
+    "condiciona-compatibilidade-de",
+    "utiliza",
+    "armazenada-em"
   ],
   "required": [
     "title",

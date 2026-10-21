@@ -6,23 +6,20 @@
   "stage": "publicar",
   "status": "em-estudo",
   "created": "2026-10-16",
-  "updated": "2026-10-16",
+  "updated": "2026-10-21",
   "tags": [
     "publicar",
     "conceito"
   ],
   "relations": [
     {
-      "target": "conceitos/imagens",
-      "kind": "armazena"
-    },
-    {
-      "target": "mapa",
-      "kind": "documenta"
+      "target": "conceitos/registry",
+      "kind": "implementa"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -61,7 +58,7 @@ Confira tag/digest, permissão de pull e imagem efetivamente executada.
 
 ## Conexões
 
-[[conceitos/imagens]] — relação: **armazena**. [[mapa]] localiza esta peça no ciclo.
+- [[conceitos/registry]] — ECR é um serviço que implementa essa responsabilidade.
 
 ## Referências
 

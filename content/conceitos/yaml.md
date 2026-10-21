@@ -13,16 +13,13 @@
   ],
   "relations": [
     {
-      "target": "conceitos/pipeline",
-      "kind": "representa-configuracoes-de"
-    },
-    {
-      "target": "conceitos/kubernetes",
-      "kind": "representa-configuracoes-de"
+      "target": "mapa",
+      "kind": "documenta"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -89,11 +86,9 @@ Ao ler um arquivo, identifique os níveis de recuo, mapas, listas e valores. Dep
 
 ## Conexões
 
-- [[conceitos/git]] — pode versionar arquivos YAML; não é uma dependência do formato.
-- [[conceitos/pipeline]] — configurações de CI/CD frequentemente usam YAML.
-- [[conceitos/kubernetes]] — manifestos podem ser escritos em YAML; Kubernetes também aceita JSON.
-- [[conceitos/helm]] — usa templates e valores para gerar manifestos; YAML não depende dele.
-- [[conceitos/kustomize]] — personaliza recursos declarados sem exigir editar cada cópia manualmente.
+- [[conceitos/git]] — pode versionar arquivos YAML. Esta é a única ligação do formato no mapa; não significa que YAML dependa de Git ou seja exclusivo dele.
+
+[[mapa]] — localização no jardim, sem acrescentar outra ligação entre conceitos.
 
 ## Referências
 

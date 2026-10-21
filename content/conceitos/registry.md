@@ -14,12 +14,13 @@
   ],
   "relations": [
     {
-      "target": "conceitos/imagens",
-      "kind": "armazena"
+      "target": "mapa",
+      "kind": "documenta"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -71,10 +72,11 @@ Ao ler uma referência, consigo identificar onde a imagem está armazenada e qua
 
 ## Conexões
 
-- [[conceitos/imagens]] — artefatos armazenados pelo registry.
-- [[conceitos/docker-hub]] — um serviço de registry.
-- [[conceitos/ecr]] — outro serviço que exerce essa responsabilidade.
-- [[conceitos/containers]] — usam as imagens obtidas, mas não são executados pelo simples armazenamento no registry.
+- [[conceitos/imagens]] — artefatos armazenados.
+- [[conceitos/docker-hub]] — serviço que implementa um registry.
+- [[conceitos/ecr]] — outro serviço de registry.
+
+[[mapa]] — localização no jardim, sem acrescentar outra ligação entre conceitos.
 
 ## Referências
 

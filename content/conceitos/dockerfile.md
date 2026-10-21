@@ -21,6 +21,7 @@
 }
 ---
 
+
 ## O problema que resolve
 
 Transformar a preparação do pacote em instruções registradas e revisáveis, em vez de depender da memória de quem instalou cada componente.
@@ -71,9 +72,8 @@ Ao ler o arquivo, localize a base, os arquivos copiados, as instalações e o co
 
 ## Conexões
 
-- [[conceitos/imagens]] — o Dockerfile configura como a imagem será construída.
-- [[conceitos/docker]] — fornece ferramentas que utilizam essas instruções.
-- [[conceitos/containers]] — recebem o comando padrão registrado na imagem.
+- [[conceitos/docker]] — utiliza este arquivo na construção.
+- [[conceitos/imagens]] — resultado cuja construção é descrita pelo Dockerfile.
 
 ## Referências
 

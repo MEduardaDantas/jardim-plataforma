@@ -14,12 +14,13 @@
   ],
   "relations": [
     {
-      "target": "conceitos/imagens",
-      "kind": "depende-de"
+      "target": "mapa",
+      "kind": "documenta"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -57,9 +58,9 @@ Distinguir container iniciado de aplicação saudável: o processo pode existir 
 
 ## Conexões
 
-- [[conceitos/imagens]] — fornecem o conteúdo inicial do container.
-- [[conceitos/docker]] — cria e gerencia containers.
-- [[conceitos/kubernetes]] — organiza a execução de containers em Pods.
+- [[conceitos/imagens]] — fornecem o conteúdo inicial e os padrões de execução.
+
+[[mapa]] — localização no jardim, sem acrescentar outra ligação entre conceitos.
 
 ## Referências
 

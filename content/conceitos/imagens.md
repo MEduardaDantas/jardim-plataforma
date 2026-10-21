@@ -16,10 +16,15 @@
     {
       "target": "conceitos/containers",
       "kind": "configura"
+    },
+    {
+      "target": "conceitos/registry",
+      "kind": "armazenada-em"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -57,11 +62,11 @@ Consigo identificar o conteúdo empacotado, a referência da imagem e quais conf
 
 ## Conexões
 
-- [[conceitos/dockerfile]] — caminho de construção adotado neste estudo.
-- [[conceitos/docker]] — ferramentas para construir e usar imagens.
-- [[conceitos/containers]] — instâncias criadas a partir desse pacote.
+- [[conceitos/dockerfile]] — descreve sua construção.
+- [[conceitos/containers]] — instâncias criadas e configuradas a partir da imagem.
 - [[conceitos/registry]] — armazena e distribui imagens.
-- [[conceitos/ecr]] — serviço que pode armazená-las, sem ser obrigatório.
+- [[conceitos/pipeline]] — pode automatizar a construção da imagem.
+- [[conceitos/multiarch]] — compatibilidade de arquitetura, para aprofundamento posterior.
 
 ## Referências
 

@@ -14,16 +14,13 @@
   ],
   "relations": [
     {
-      "target": "conceitos/imagens",
-      "kind": "produz"
-    },
-    {
-      "target": "conceitos/containers",
-      "kind": "executa"
+      "target": "conceitos/dockerfile",
+      "kind": "utiliza"
     }
   ]
 }
 ---
+
 
 ## O problema que resolve
 
@@ -67,10 +64,7 @@ Consigo distinguir o que foi empacotado do que precisa ser fornecido no destino?
 
 ## Conexões
 
-- [[conceitos/imagens]] — Docker produz imagens para distribuição.
-- [[conceitos/containers]] — Docker cria e executa containers a partir de imagens.
-- [[conceitos/dockerfile]] — descreve as instruções da construção.
-- [[conceitos/registry]] — recebe e distribui as imagens publicadas.
+- [[conceitos/dockerfile]] — Docker utiliza as instruções para construir a imagem.
 
 ## Referências
 

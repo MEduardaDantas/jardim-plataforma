@@ -21,6 +21,7 @@
 }
 ---
 
+
 ## O problema que resolve
 
 Oferecer um lugar para encontrar, publicar e distribuir imagens entre pessoas e ambientes de execução.
@@ -55,10 +56,7 @@ Consigo distinguir Docker Hub de Docker Engine e identificar repositório e tag?
 
 ## Conexões
 
-- [[conceitos/registry]] — conceito que o serviço implementa.
-- [[conceitos/imagens]] — conteúdo que ele distribui.
-- [[conceitos/dockerfile]] — pode referenciar uma imagem do Hub em `FROM`.
-- [[conceitos/ecr]] — alternativa de serviço de registry.
+- [[conceitos/registry]] — conceito implementado pelo Docker Hub.
 
 ## Referências
 
