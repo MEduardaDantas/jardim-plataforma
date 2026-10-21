@@ -45,3 +45,18 @@ for(const slug of ['github','gitlab','gitops','gitflow','githubflow','trunk-base
  assert.ok(page.querySelector('.concept-brand img'));
 }
 console.log('Catálogo automático e ícones verificados.');
+
+const labs=data.notes.filter(n=>n.type==='laboratorio');
+const labCatalog=parseHTML(fs.readFileSync('public/laboratorios/index.html','utf8')).document;
+assert.equal(labCatalog.querySelectorAll('.lab-card').length,labs.length);
+assert.ok(labs.length>=10,'demandas de estudo ausentes');
+for(const lab of labs){
+ const page=parseHTML(fs.readFileSync('public/'+lab.slug+'.html','utf8')).document;
+ assert.ok(page.querySelector('.lab-edit a').getAttribute('href').includes('editar='+encodeURIComponent(lab.slug)));
+ assert.ok(lab.meta&&lab.body.includes('## Contexto'),'conteúdo editável ausente');
+}
+assert.ok(!labCatalog.querySelector('.garden-nav').textContent.includes('Simulador'));
+console.log('Catálogo de laboratórios e edição de relatórios verificados.');
+
+assert.ok(labCatalog.querySelector('.lab-edit a').getAttribute('href').includes('editar=laboratorios%2Findex'));
+for(const lab of labs){assert.ok(!lab.body.includes('## Meu registro'));assert.equal(lab.meta.relations,undefined);}

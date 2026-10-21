@@ -1,54 +1,43 @@
 ---
-title: Uma descoberta para registrar
-description: Explique o problema e o aprendizado desta nota em suas palavras.
-type: laboratorio
-stage: aprender
-status: rascunho
-created: 2026-10-17
-updated: 2026-10-17
-tags:
-  - estudo
-relations:
-  - target: mapa
-    kind: depende-de
+{
+  "title": "Demanda de estudo",
+  "description": "Contexto e resultado esperado de uma demanda prática integrada.",
+  "type": "laboratorio",
+  "stage": "aprender",
+  "status": "rascunho",
+  "created": "2026-10-21",
+  "updated": "2026-10-21",
+  "tags": [
+    "git",
+    "docker"
+  ]
+}
 ---
 
-## O desafio
+## Contexto
 
-Registre sua explicação, dúvida ou evidência.
+Descreva a situação do serviço, quem precisa da mudança e por que ela importa.
 
-## O que vamos aprender
+## Objetivo da entrega
 
-Registre sua explicação, dúvida ou evidência.
+Defina o resultado que precisa existir ao concluir, não uma lista de comandos.
 
-## Antes de começar
+## Ponto de partida
 
-Registre sua explicação, dúvida ou evidência.
+Identifique projetos, versão inicial, acessos e dependências necessários.
 
-## Experimente
+## Desenvolvimento da demanda
 
-Registre sua explicação, dúvida ou evidência.
+Organize as decisões e etapas da entrega em torno do objetivo.
 
-## O que observar
+## Incidente para investigar
 
-Registre sua explicação, dúvida ou evidência.
+Descreva uma falha plausível e o que será necessário investigar para recuperá-la.
 
-## Se algo der errado
+## Critérios de conclusão
 
-Registre sua explicação, dúvida ou evidência.
-
-## Meu registro
-
-Registre sua explicação, dúvida ou evidência.
-
-## Limpeza
-
-Registre sua explicação, dúvida ou evidência.
-
-## Conexões
-
-[[mapa]] — explique a relação.
+Defina resultados observáveis que demonstram a conclusão e suas limitações.
 
 ## Referências
 
-https://quartz.jzhao.xyz/
+https://git-scm.com/docs

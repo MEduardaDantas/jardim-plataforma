@@ -8,7 +8,7 @@ test('formulário gera cada modelo compatível com políticas',async()=>{const {
 await vm.runInContext('(async()=>{'+fs.readFileSync('web/studio.js','utf8')+'})()',context);
 assert.equal(document.getElementById('workspace').hidden,false);
 const $=id=>document.getElementById(id);
-for(const type of Object.keys(schema.types)){
+for(const type of ['conceito','laboratorio']){
  $('type').value=type;$('type').dispatchEvent(new window.Event('change',{bubbles:true}));
  $('title').value='Uma descoberta '+type;$('slug').value='teste-'+type;$('description').value='Uma explicação completa para verificar o modelo gerado no formulário.';$('stage').value='aprender';$('status').value='em-estudo';$('tags').value='estudo';
  for(const input of document.querySelectorAll('[data-section]'))input.value=input.dataset.section==='Referências'?'https://quartz.jzhao.xyz/':'Uma explicação completa do que foi aprendido e como verificar.';
@@ -18,7 +18,45 @@ for(const type of Object.keys(schema.types)){
  assert.deepEqual(validate([...readNotes(),{slug:'testes/teste-'+type,meta:YAML.parse(m[1]),body:m[2]}]),[]);
  assert.equal($('github').disabled,false);
 }
-$('media-section').value='Objetivo';$('image-url').value='https://example.com/diagram.png';$('image-alt').value='Pipeline publica imagem';$('media-insert').onclick();assert.ok([...document.querySelectorAll('[data-section]')].some(x=>x.value.includes('![Pipeline publica imagem]')));
+$('media-section').value='Contexto';$('image-url').value='https://example.com/diagram.png';$('image-alt').value='Pipeline publica imagem';$('media-insert').onclick();assert.ok([...document.querySelectorAll('[data-section]')].some(x=>x.value.includes('![Pipeline publica imagem]')));
 $('media-kind').value='diagram';$('diagram-code').value='flowchart TD\n A-->B';$('media-insert').onclick();assert.ok([...document.querySelectorAll('[data-section]')].some(x=>x.value.includes('```mermaid')));
-$('relations').replaceChildren();$('editor').onsubmit({preventDefault(){}});assert.match($('result').textContent,/Adicione ao menos/);
+$('relations').replaceChildren();$('editor').onsubmit({preventDefault(){}});assert.equal($('github').disabled,false);assert.ok(!YAML.parse($('preview').textContent.split('---')[1]).relations);
+$('type').value='conceito';$('type').dispatchEvent(new window.Event('change',{bubbles:true}));$('editor').onsubmit({preventDefault(){}});assert.match($('result').textContent,/Adicione ao menos/);
+});
+
+test('relatório existente carrega, preserva criação e atualiza no mesmo caminho',async()=>{
+ const {window,document}=dom('web/studio.html');
+ const notes=readNotes();const lab=notes.find(n=>n.meta.type==='laboratorio');
+ const data={settings,schema,notes:notes.map(n=>({...n,...n.meta}))};
+ const opened=[];window.open=(...args)=>opened.push(args);
+ const context=vm.createContext({window,document,fetch:async()=>({ok:true,json:async()=>data}),location:{search:'?editar='+encodeURIComponent(lab.slug)},URLSearchParams,localStorage:{getItem:()=>null,setItem:()=>{}},URL,Blob,setTimeout,Date,console});
+ await vm.runInContext('(async()=>{'+fs.readFileSync('web/studio.js','utf8')+'})()',context);
+ const $=id=>document.getElementById(id);
+ assert.equal($('workspace').hidden,false,$('loading').textContent);
+ assert.equal($('title').value,lab.meta.title);
+ assert.equal($('type').disabled,true);
+ assert.ok(![...document.querySelectorAll('[data-section]')].some(x=>x.dataset.section==='Resolução e resultados'));
+ assert.equal($('relation-controls').hidden,true);$('add-report').onclick();
+ const record=[...document.querySelectorAll('[data-section]')].find(x=>x.dataset.section==='Resolução e resultados');
+ record.value+='\n\nMinha evidência: contrato compatível verificado e incidente recuperado.';
+ $('editor').onsubmit({preventDefault(){}});
+ const raw=$('preview').textContent;const m=raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);assert.ok(m,$('result').textContent);
+ const meta=YAML.parse(m[1]);assert.equal(meta.created,lab.meta.created);
+ assert.equal(meta.type,'laboratorio');
+ assert.deepEqual(validate(notes.map(n=>n.slug===lab.slug?{...n,meta,body:m[2]}:n)),[]);
+ $('github').onclick();assert.ok(opened[0][0].endsWith('/content/'+lab.slug+'.md'));assert.ok(opened[0][0].includes('/edit/'));
+ assert.match($('result').textContent,/não transfere/);
+});
+
+test('índice editável preserva caminho laboratorios/index sem criar guias/index',async()=>{
+ const {window,document}=dom('web/studio.html');const notes=readNotes();const note=notes.find(n=>n.slug==='laboratorios/index');
+ const data={settings,schema,notes:notes.map(n=>({...n,...n.meta}))};const opened=[];window.open=url=>opened.push(url);
+ const context=vm.createContext({window,document,fetch:async()=>({ok:true,json:async()=>data}),location:{search:'?editar=laboratorios%2Findex'},URLSearchParams,localStorage:{getItem:()=>null,setItem:()=>{}},URL,Blob,setTimeout,Date,console});
+ await vm.runInContext('(async()=>{'+fs.readFileSync('web/studio.js','utf8')+'})()',context);
+ document.querySelector('[data-section="Passo a passo"]').value+='\n\nEspaço de estudo: https://github.com/exemplo';
+ document.getElementById('editor').onsubmit({preventDefault(){}});
+ assert.match(document.getElementById('result').textContent,/content\/laboratorios\/index.md/);
+ document.getElementById('github').onclick();assert.ok(opened[0].endsWith('/content/laboratorios/index.md'));
+ const raw=document.getElementById('preview').textContent;const m=raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+ assert.deepEqual(validate(notes.map(n=>n===note?{...n,meta:YAML.parse(m[1]),body:m[2]}:n)),[]);
 });

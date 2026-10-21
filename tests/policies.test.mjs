@@ -13,3 +13,13 @@ for(const [name,mutate,pattern] of [
  ['tag inválida',n=>n.meta.tags=['Tem Espaços'],/tags/],
  ['credencial',n=>n.body+='\nAKIA'+'A'.repeat(16),/credencial/]
 ])test(name,()=>{const copy=structuredClone(notes);const n=copy.find(n=>n.meta.type==='conceito');mutate(n);assert.match(validate(copy).join('\n'),pattern);});
+
+test('laboratório dispensa relações e mantém tags de assuntos',()=>{
+ const lab=structuredClone(notes.find(n=>n.meta.type==='laboratorio'));delete lab.meta.relations;
+ assert.deepEqual(validate(notes.map(n=>n.slug===lab.slug?lab:n)),[]);
+ lab.meta.tags=[];assert.match(validate([lab]).join('\n'),/tags inválidas/);
+});
+test('relações fornecidas em laboratório ainda precisam ser válidas',()=>{
+ const lab=structuredClone(notes.find(n=>n.meta.type==='laboratorio'));lab.meta.relations=[{target:'inexistente',kind:'documenta'}];
+ assert.match(validate(notes.map(n=>n.slug===lab.slug?lab:n)).join('\n'),/relação inexistente/);
+});

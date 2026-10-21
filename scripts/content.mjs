@@ -14,7 +14,7 @@ export function validate(notes) {
  for(const n of notes) {
   const {meta:m,body,slug}=n; const fail=s=>errors.push(`${slug}: ${s}`);
   if(!m || typeof m!=='object' || Array.isArray(m)){fail('metadados inválidos');continue;}
-  for(const field of schema.required) if(!(field in m)) fail(`campo obrigatório: ${field}`);
+  for(const field of schema.required) if(!(field in m)&&!(m.type==='laboratorio'&&field==='relations')) fail(`campo obrigatório: ${field}`);
   if(!/^[a-z0-9]+(?:[-/][a-z0-9]+)*$/.test(slug)) fail('caminho deve usar minúsculas sem acentos e hífens');
   if(typeof m.title!=='string'||m.title.length<3||m.title.length>100)fail('título: 3–100 caracteres');
   if(titles.has(m.title))fail('título duplicado'); titles.add(m.title);
@@ -32,8 +32,9 @@ export function validate(notes) {
   }
   const links=[...prose.matchAll(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]/g)].map(x=>x[1]);
   for(const link of links)if(!slugs.has(link))fail(`wikilink inexistente: ${link}`);
-  if(!Array.isArray(m.relations)||!m.relations.length)fail('inclua ao menos uma relação');
-  else for(const rel of m.relations){
+  if(m.type!=='laboratorio'&&(!Array.isArray(m.relations)||!m.relations.length))fail('inclua ao menos uma relação');
+  if(m.relations!==undefined&&!Array.isArray(m.relations))fail('relações devem ser uma lista');
+  for(const rel of Array.isArray(m.relations)?m.relations:[]){
    if(!rel || !slugs.has(rel.target))fail(`relação inexistente: ${rel?.target}`);
    if(rel?.target===slug)fail('relação consigo mesma');
    if(!schema.relationTypes.includes(rel?.kind))fail('tipo de relação inválido');
