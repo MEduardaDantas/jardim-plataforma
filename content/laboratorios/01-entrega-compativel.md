@@ -187,40 +187,46 @@ A entrega deve demonstrar:
 - [ ] Qualquer ensaio de recuperação é documentado com resultados reais, sem confundi-lo com a integração normal.
 - [ ] As limitações que permaneceram são registradas.
 
+## Referências
+
+- [GitHub Flow — documentação oficial](https://docs.github.com/en/get-started/using-github/github-flow)
+- [GitLab Merge Requests — documentação oficial](https://docs.gitlab.com/user/project/merge_requests/)
+- [Repositório do laboratório](https://github.com/jardim-plataforma/lab-01-entrega-compativel)
+
 ## Resolução e resultados
 
 A solução evolui o catálogo sem exigir que todos os consumidores mudem ao mesmo tempo. O contrato v1 permanece disponível para a integração legada, enquanto a v2 oferece os campos adicionais `unidade` e `responsavel`.
 
-### 1. Comportamento do consumidor legado — API v1
+### 1. Comportamento do consumidor legado
 
-O Portal legado consulta a API v1 e recebe os três campos originais: `id`, `nome` e `status`. A integração continua utilizando esse contrato, sem precisar migrar para a nova versão.
+O Portal legado consulta a API v1 e recebe os três campos originais: `id`, `nome` e `status`.
 
-![Portal legado usando o contrato v1](/jardim-plataforma/assets/labs/01/Portal-legado-v1.png)
+![Portal legado usando o contrato v1](/content/assets/labs/01/Portal-legado-v1.png)
 
 ### 2. Investigação do recurso inexistente
 
-Durante a investigação, foi observado um comportamento incorreto ao consultar um identificador inexistente. Essa situação evidencia por que a API precisa diferenciar uma consulta bem-sucedida de um recurso que não foi encontrado.
+A consulta de um identificador inexistente, como `svc-004`, permite verificar como a aplicação trata uma resposta de ausência de recurso.
 
-![Comportamento observado na consulta sem recurso inexistente](/jardim-plataforma/assets/labs/01/Sem-recurso-inexistente.png)
+![Comportamento observado durante a investigação do recurso inexistente](/content/assets/labs/01/Sem-recurso-inexistente.png)
 
-### 3. Correção — HTTP 404 na API v2
+### 3. Correção do recurso inexistente
 
-A resposta para um recurso inexistente passa a utilizar HTTP 404 e um erro estruturado, com o código `RECURSO_INEXISTENTE` e o identificador consultado.
+A API responde com HTTP 404 e um erro estruturado contendo o código `RECURSO_INEXISTENTE` e o identificador consultado.
 
-![Resposta para recurso inexistente na API v2](/jardim-plataforma/assets/labs/01/Recurso-inexistente-v2.png)
+![Resposta de recurso inexistente na API v2](/content/assets/labs/01/Recurso-inexistente-v2.png)
 
-### 4. Evolução compatível — Portal usando API v2
+### 4. Contrato v2 ampliado
 
-A API v2 mantém `id`, `nome` e `status` e acrescenta `unidade` e `responsavel`. O Portal atualizado consegue apresentar os dados adicionais, enquanto o consumidor legado permanece na v1.
+A API v2 mantém os campos originais e acrescenta `unidade` e `responsavel`. O consumidor que precisa dos dados adicionais pode utilizar a v2, enquanto a integração legada continua usando a v1.
 
-![Portal usando o contrato v2 ampliado](/jardim-plataforma/assets/labs/01/Portal-contrato-v2.png)
+![Portal usando o contrato v2 ampliado](/content/assets/labs/01/Portal-contrato-v2.png)
 
-### Verificações realizadas
+### Verificação final
 
-- A suíte automatizada foi executada com `python -m unittest discover -s tests -v`.
-- Resultado registrado: 13 testes aprovados.
+- Os 13 testes automatizados passaram na execução registrada de `python -m unittest discover -s tests -v`.
 - A integração legada foi verificada com `python -m consumidores.verificar`.
-- A v1 e a v2 permanecem disponíveis com contratos distintos.
-- As mudanças foram integradas na branch `main-resolução`.
+- A API v1 mantém o contrato de três campos e a v2 oferece cinco campos.
+- A correção para recurso inexistente foi integrada à branch `main-resolução`.
+- A implementação e os testes foram verificados localmente.
 
-**Limites das evidências:** os resultados documentam a implementação e as verificações locais. Não comprovam implantação em produção nem a execução de um exercício de rollback.
+**Limites da evidência:** os resultados documentam a integração e a verificação local. Não comprovam implantação em produção nem a execução de um exercício de rollback.
