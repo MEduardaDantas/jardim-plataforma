@@ -201,25 +201,25 @@ A solução evolui o catálogo sem exigir que todos os consumidores mudem ao mes
 
 O Portal legado consulta a API v1 e recebe os três campos originais: `id`, `nome` e `status`.
 
-![Portal legado usando o contrato v1](/content/assets/labs/01/Portal-legado-v1.png)
+![Portal legado usando o contrato v1](/assets/labs/01/portal-legado-v1.png)
 
 ### 2. Investigação do recurso inexistente
 
 A consulta de um identificador inexistente, como `svc-004`, permite verificar como a aplicação trata uma resposta de ausência de recurso.
 
-![Comportamento observado durante a investigação do recurso inexistente](/content/assets/labs/01/Sem-recurso-inexistente.png)
+![Comportamento observado durante a investigação do recurso inexistente](/assets/labs/01/sem-recurso-inexistente.png)
 
 ### 3. Correção do recurso inexistente
 
 A API responde com HTTP 404 e um erro estruturado contendo o código `RECURSO_INEXISTENTE` e o identificador consultado.
 
-![Resposta de recurso inexistente na API v2](/content/assets/labs/01/Recurso-inexistente-v2.png)
+![Resposta de recurso inexistente na API v2](/assets/labs/01/recurso-inexistente-v2.png)
 
 ### 4. Contrato v2 ampliado
 
 A API v2 mantém os campos originais e acrescenta `unidade` e `responsavel`. O consumidor que precisa dos dados adicionais pode utilizar a v2, enquanto a integração legada continua usando a v1.
 
-![Portal usando o contrato v2 ampliado](/content/assets/labs/01/Portal-contrato-v2.png)
+![Portal usando o contrato v2 ampliado](/assets/labs/01/portal-contrato-v2.png)
 
 ### Verificação final
 
