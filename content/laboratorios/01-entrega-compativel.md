@@ -187,51 +187,40 @@ A entrega deve demonstrar:
 - [ ] Qualquer ensaio de recuperação é documentado com resultados reais, sem confundi-lo com a integração normal.
 - [ ] As limitações que permaneceram são registradas.
 
-## Referências
-
-- [GitHub Flow — documentação oficial](https://docs.github.com/en/get-started/using-github/github-flow)
-- [GitLab Merge Requests — documentação oficial](https://docs.gitlab.com/user/project/merge_requests/)
-- [Repositório do laboratório](https://github.com/jardim-plataforma/lab-01-entrega-compativel)
-
 ## Resolução e resultados
 
 A solução evolui o catálogo sem exigir que todos os consumidores mudem ao mesmo tempo. O contrato v1 permanece disponível para a integração legada, enquanto a v2 oferece os campos adicionais `unidade` e `responsavel`.
 
-<details>
-<summary>Ver resolução, evidências e resultados</summary>
+### 1. Comportamento do consumidor legado — API v1
 
-### 1. Comportamento inicial: consumidor legado na v1
+O Portal legado consulta a API v1 e recebe os três campos originais: `id`, `nome` e `status`. A integração continua utilizando esse contrato, sem precisar migrar para a nova versão.
 
-O Portal legado consulta a API v1 e recebe os três campos originais: `id`, `nome` e `status`.
+![Portal legado usando o contrato v1](/jardim-plataforma/assets/labs/01/Portal-legado-v1.png)
 
-![Portal legado usando o contrato v1](/content/assets/labs/01/Portal-legado-v1.png)
+### 2. Investigação do recurso inexistente
 
-### 2. Incidente: recurso inexistente sem tratamento adequado
+Durante a investigação, foi observado um comportamento incorreto ao consultar um identificador inexistente. Essa situação evidencia por que a API precisa diferenciar uma consulta bem-sucedida de um recurso que não foi encontrado.
 
-Ao consultar um identificador inexistente, como `svc-004`, a resposta anterior não era tratada corretamente pelo consumidor. A captura registra o comportamento observado durante a investigação.
+![Comportamento observado na consulta sem recurso inexistente](/jardim-plataforma/assets/labs/01/Sem-recurso-inexistente.png)
 
-![Comportamento observado para recurso inexistente antes da correção](/content/assets/labs/01/Sem-recurso-inexistente.png)
+### 3. Correção — HTTP 404 na API v2
 
-### 3. Correção: resposta estruturada para recurso inexistente
+A resposta para um recurso inexistente passa a utilizar HTTP 404 e um erro estruturado, com o código `RECURSO_INEXISTENTE` e o identificador consultado.
 
-A API passa a responder com HTTP 404 e um erro estruturado, contendo o código `RECURSO_INEXISTENTE` e o identificador consultado. A correção foi integrada à solução.
+![Resposta para recurso inexistente na API v2](/jardim-plataforma/assets/labs/01/Recurso-inexistente-v2.png)
 
-![Resposta v2 para recurso inexistente](/content/assets/labs/01/Recurso-inexistente-v2.png)
+### 4. Evolução compatível — Portal usando API v2
 
-### 4. Evolução compatível: Portal usando a v2
+A API v2 mantém `id`, `nome` e `status` e acrescenta `unidade` e `responsavel`. O Portal atualizado consegue apresentar os dados adicionais, enquanto o consumidor legado permanece na v1.
 
-O contrato v2 mantém os campos existentes e acrescenta `unidade` e `responsavel`. Assim, novos consumidores podem usar os dados ampliados sem retirar o contrato v1 da integração legada.
+![Portal usando o contrato v2 ampliado](/jardim-plataforma/assets/labs/01/Portal-contrato-v2.png)
 
-![Portal usando o contrato v2 ampliado](/content/assets/labs/01/Portal-contrato-v2.png)
+### Verificações realizadas
 
-### Verificação final
-
-- Os testes automatizados foram executados com `python -m unittest discover -s tests -v`.
-- Resultado registrado: **13 testes aprovados**.
+- A suíte automatizada foi executada com `python -m unittest discover -s tests -v`.
+- Resultado registrado: 13 testes aprovados.
 - A integração legada foi verificada com `python -m consumidores.verificar`.
 - A v1 e a v2 permanecem disponíveis com contratos distintos.
-- A solução foi integrada na branch `main-resolução`.
+- As mudanças foram integradas na branch `main-resolução`.
 
-**Limite da evidência:** os resultados comprovam a implementação e as verificações locais. Não representam, por si só, um deploy em produção ou um exercício de rollback.
-
-</details>
+**Limites das evidências:** os resultados documentam a implementação e as verificações locais. Não comprovam implantação em produção nem a execução de um exercício de rollback.
