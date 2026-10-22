@@ -7,8 +7,53 @@ function option(value,label=value){const o=document.createElement('option');o.va
 function capture(){for(const id of ['type','title','slug','description','stage','status','tags'])draft.fields[id]=$(id).value;document.querySelectorAll('[data-section]').forEach(el=>draft.sections[el.dataset.section]=el.value);draft.relations=$('type').value==='laboratorio'?[]:[...document.querySelectorAll('.relation')].map(row=>({target:row.querySelector('.target').value,kind:row.querySelector('.kind').value}));}
 function save(){capture();try{localStorage.setItem(draftKey,JSON.stringify(draft));}catch{}}
 function invalidate(){generated='';$('github').disabled=true;$('download').disabled=true;$('copy').disabled=true;$('result').textContent='Alterações pendentes. Gere o Markdown novamente para revisar.';}
-function renderSections(){$('relation-controls').hidden=$('type').value==='laboratorio';$('add-report').hidden=$('type').value!=='laboratorio';const box=$('sections');box.replaceChildren();for(const heading of [...data.schema.types[$('type').value],...Object.keys(draft.sections).filter(h=>(editing||h==='Resolução e resultados')&&!data.schema.types[$('type').value].includes(h))].filter(x=>x!=='Conexões')){const label=document.createElement('label');const id='section-'+box.children.length;label.htmlFor=id;label.textContent=heading;const input=document.createElement('textarea');input.id=id;input.dataset.section=heading;input.required=heading!=='Resolução e resultados';input.minLength=heading==='Resolução e resultados'?0:12;input.value=draft.sections[heading]||'';input.placeholder=heading==='Referências'?'https://endereco-da-documentacao-oficial':'Explique o que você entendeu, o que fez ou como verificou.';box.append(label,input);}
-const choices=$('media-section');if(choices){choices.replaceChildren();for(const h of [...new Set([...data.schema.types[$('type').value],...Object.keys(draft.sections).filter(h=>h==='Resolução e resultados'||editing)])].filter(h=>h!=='Conexões'&&h!=='Referências'))choices.append(option(h));}}
+function renderSections(){
+$('relation-controls').hidden=$('type').value==='laboratorio';
+$('add-report').hidden=$('type').value!=='laboratorio';
+const box=$('sections');
+box.replaceChildren();
+const report='Resolução e resultados';
+const headings=[
+  ...data.schema.types[$('type').value],
+  ...Object.keys(draft.sections).filter(h=>
+    h!==report&&
+    (editing||h===report)&&
+    !data.schema.types[$('type').value].includes(h)
+  )
+].filter(x=>x!=='Conexões');
+
+if($('type').value==='laboratorio'&&draft.sections[report]!==undefined&&draft.reportVisible){
+  headings.push(report);
+}
+
+for(const heading of headings){
+  const label=document.createElement('label');
+  const id='section-'+box.children.length;
+  label.htmlFor=id;
+  label.textContent=heading;
+  const input=document.createElement('textarea');
+  input.id=id;
+  input.dataset.section=heading;
+  input.required=heading!=='Resolução e resultados';
+  input.minLength=heading==='Resolução e resultados'?0:12;
+  input.value=draft.sections[heading]||'';
+  input.placeholder=heading==='Referências'?'https://endereco-da-documentacao-oficial':'Explique o que você entendeu, o que fez ou como verificou.';
+  box.append(label,input);
+}
+const choices=$('media-section');
+if(choices){
+  choices.replaceChildren();
+  for(const h of [...new Set([
+    ...data.schema.types[$('type').value],
+    ...Object.keys(draft.sections).filter(h=>
+      h!=='Resolução e resultados'&&editing
+    ),
+    ...(draft.reportVisible?[report]:[])
+  ])].filter(h=>h!=='Conexões'&&h!=='Referências')){
+    choices.append(option(h));
+  }
+}
+}
 function addRelation(rel={}){const row=document.createElement('div');row.className='relation';const kind=document.createElement('select');kind.className='kind';kind.setAttribute('aria-label','Tipo de relação');for(const k of data.schema.relationTypes)kind.append(option(k));kind.value=rel.kind||'depende-de';const target=document.createElement('select');target.className='target';target.setAttribute('aria-label','Nota relacionada');for(const n of data.notes)target.append(option(n.slug,n.title));target.value=rel.target||data.notes[0].slug;const remove=document.createElement('button');remove.type='button';remove.className='secondary';remove.textContent='×';remove.setAttribute('aria-label','Remover relação');remove.onclick=()=>{row.remove();save();invalidate();};row.append(kind,target,remove);$('relations').append(row);}
 function build(){capture();const f=draft.fields;const headings=[...data.schema.types[f.type],...Object.keys(draft.sections).filter(h=>(editing||h==='Resolução e resultados')&&!data.schema.types[f.type].includes(h))];const slug=editing?.slug||folders[f.type]+'/'+f.slug;if(data.notes.some(n=>n.slug===slug&&n.slug!==editing?.slug))throw Error('Já existe uma nota neste caminho. Use Editar esta página ou outro nome.');
 if(f.type!=='laboratorio'&&!draft.relations.length)throw Error('Adicione ao menos uma relação.');
@@ -23,7 +68,7 @@ if(/<script\b|<iframe\b|javascript\s*:/i.test(body))throw Error('Não insira scr
 generated='---\n'+JSON.stringify(meta,null,2)+'\n---\n\n'+body+'\n';filename='content/'+slug+'.md';return generated;}
 try{const response=await fetch('garden-data.json');if(!response.ok)throw Error('Dados indisponíveis');data=await response.json();const editSlug=new URLSearchParams(location.search).get('editar');
 if(editSlug){editing=data.notes.find(n=>n.slug===editSlug);if(!editing?.meta||!editing?.body)throw Error('Nota indisponível para edição.');
-draftKey='garden-edit-'+editSlug;draft.fields={...editing.meta,slug:editSlug.split('/').pop(),tags:editing.meta.tags.join(',')};draft.relations=editing.meta.relations||[];
+draftKey='garden-edit-'+editSlug;draft.reportVisible=false;draft.fields={...editing.meta,slug:editSlug.split('/').pop(),tags:editing.meta.tags.join(',')};draft.relations=editing.meta.relations||[];
 for(const m of editing.body.matchAll(/^## (.+)\r?\n([\s\S]*?)(?=^## |$(?![\s\S]))/gm))draft.sections[m[1]]=m[2].trim();
 $('type').disabled=true;$('slug').readOnly=true;$('github').textContent='Abrir arquivo no GitHub ↗';
 $('editing-status').textContent='Editando: '+editing.title+'. Revise e salve no mesmo arquivo; nenhuma alteração é publicada automaticamente.';
@@ -40,7 +85,7 @@ $('editor').addEventListener('input',()=>{save();invalidate();});$('editor').add
 $('slug').addEventListener('input',()=>{slugEdited=true;});
 slugEdited=Boolean(draft.fields.slug);
 $('title').addEventListener('input',()=>{if(!slugEdited){$('slug').value=$('title').value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}});
-$('add-report').onclick=()=>{capture();draft.sections['Resolução e resultados']??='';renderSections();save();invalidate();};
+$('add-report').onclick=()=>{capture();draft.sections['Resolução e resultados']??='';draft.reportVisible=true;renderSections();save();invalidate();};
 $('add-relation').onclick=()=>{addRelation();save();invalidate();};
 $('editor').onsubmit=e=>{e.preventDefault();try{build();$('preview').textContent=generated;$('result').textContent=`Arquivo: ${filename}\nRevise e conclua no GitHub. A pipeline fará a validação completa.`;$('result').className='message';$('github').disabled=false;$('download').disabled=false;$('copy').disabled=false;save();}catch(err){$('result').textContent=err.message;$('result').className='message error';}};
 $('github').onclick=()=>{if(editing){
